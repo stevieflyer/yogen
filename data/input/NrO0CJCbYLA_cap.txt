@@ -1,0 +1,78 @@
+dart a type safe general purpose
+programming language designed for
+building fast apps on multiple platforms
+it was developed by google and first
+appeared in 2011 and was intended to be
+an alternative to javascript by shipping
+its own virtual machine to run apps in
+the browser but things got off to a
+rocky start and it was never really
+embraced by the web development
+community however it bounced back in a
+big way after being adopted by the
+flutter framework and today it's one of
+the most loved programming languages in
+the industry it's unique for its ability
+to compile to multiple targets like arm
+and x64 machine code for mobile devices
+javascript for web browsers and
+self-contained executables for windows
+mac os and linux it also has a just in
+time or jit compiler which compiles your
+source code to machine code on the fly
+which can boost developer productivity
+with features like hot reload and
+flutter all dark code runs inside of an
+isolate which is like a chunk of memory
+running a single threaded event loop
+this makes it possible to perform
+asynchronous background work on a single
+thread but you can also spawn multiple
+isolates to run code in parallel the
+language itself is type safe which means
+that a variable's value always matches
+its static type and that generally
+results in fewer runtime errors for your
+app in production however the type
+system is flexible allowing you to use
+dynamic types and runtime checks when
+required it also provides null safety
+which means that values can't be null
+unless you explicitly allow them to be
+which can further cut down runtime
+exceptions syntactically it's often
+described as combining elements of java
+and javascript a dart program always
+starts with a main function that has no
+return value so it's annotated with the
+void type inside of it we might declare
+a variable with var and set it equal to
+a string dart will automatically infer
+this as a string type however we could
+explicitly type it by replacing var
+anything you can store in a variable is
+an object and every object is an
+instance of a class the only thing
+that's not an object in dart is null
+this opens the door to multiple
+programming paradigms functions are also
+first-class objects which means they can
+be passed around for functional
+programming or you can define classes
+with mixin-based inheritance for
+object-oriented patterns on top of that
+it has a package manager called pub
+providing thousands of open source
+packages to help you get things done
+this has been dart in 100 seconds hit
+the like button and subscribe if you
+want to see more short videos like this
+and if you want to get really good at
+dart i just released a brand new full
+course for pro members it teaches the
+fundamentals of dart from the ground up
+to get you ready for flutter development
+and my upcoming flutter 2 course which
+will be out later this year thanks for
+watching and i will see you in the next
+one

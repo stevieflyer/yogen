@@ -1,0 +1,998 @@
+hey hello welcome everyone um so welcome
+to the first episode of uh coach by
+triple do uh so it's a very exciting
+episode I mean exciting series we've
+been all we've all been looking forward
+to and uh you know we have about 22
+speakers uh lined up uh for the year and
+uh you get you'll get to hear from you
+know leaders veterans in the marketing
+space uh
+over the next one year and the objective
+of this is to um you know make sure that
+you have all the Practical knowledge uh
+uh you know taken uh and you can have a
+plugin play Playbook at the end of the
+day when you leave this uh you know
+webinar so for the first episode we have
+Rory uh who's going to Kickstart this
+session and we're extremely fortunate uh
+uh to have Rory on inaugurating this
+coach uh for us uh a brief introduction
+about rori rori is currently the head of
+SEO and content HubSpot prior to this he
+was uh working as an inbound marketing
+manager at remote.com which was scaling
+at a very very rapid pace and he was
+taking care of all uh things related to
+inbound marketing before which he was
+working with a growth marketing agency
+called as symmetrical so this experience
+is immense and at the end of the episode
+you will have immense takeaways uh for
+your organization and for you personally
+and uh we're really looking forward to
+having you and thanks for taking the
+time to attend this and I Mahesh I'll be
+the host of uh you know uh this entire
+series uh and I work as a director of
+growth the triple
+D overi and uh it's all yours from now
+uh again uh Team uh as a as a ground
+rule uh we won't be having any questions
+and answer happening during the session
+so the session will roughly go on for
+about 35 to 40 minutes and in the
+meanwhile you can uh log in your
+questions in the Q&A section and we'll
+collate it and post a questions towards
+the end of the session to RI the
+recording session will also be shared uh
+you know after the session is over
+through email and and uh you can reach
+out to us in case of any queries in the
+future or if you want uh any particular
+materials from the session as well how
+you RI again really great having you
+here and doing this for triple
+do thank you Mahesh and um yeah really
+pleased to be here to kick off the coach
+by triple Dart series um so thank you
+everyone for joining I'm going to share
+my screen now and bring up the
+presentation for
+today so
+today we're going to be talking about I
+think it's just
+loading let me know when you can see my
+screen I don't think you can see my
+screen yet if I'm not mistaken mahish
+could you confirm is it saying loading
+yeah it's loading yes it is okay let me
+try this
+again um slideshow there we are it
+always works the second time around so
+yes um hi everyone today we'll be
+talking about integrating audience
+intelligence and social listening to
+your content marketing playbook in
+2024 and specifically how you can go
+about building SEO personas by
+integrating those data sources that are
+going to help you to power your content
+marketing Playbook um future proofing it
+in the age of AI disruption so as mahes
+mentioned I am VY head of content SEO at
+hopspot um I've got just over a decade's
+worth of experience driving SEO and
+growth marketing for leading B2B SAS
+Brands and
+startups uh I'd love to connect so you
+can find me on X LinkedIn and my website
+at ww. Roy hope.com
+so to set the scene here today I wanted
+to share the results of a survey that I
+did of seos on X to better understand
+how they develop their SEO content
+strategies um mainly to understand their
+pain points but also whether or not they
+were using social data during the
+process because um when first coming up
+with this Playbook I had a a hypothesis
+that seos weren't using social data and
+that it could help to alleviate a number
+of the pain points that they face When
+developing content marketing playbooks
+and what were the results well 40% of
+seos say they struggle to deliver
+consistent high quality content on a
+regular basis 88% seos said they would
+like to speed up link
+prospecting
+63% said that keyword data doesn't
+provide enough information on the
+interests and behaviors of their target
+audience and that's Stark considering
+that many seos rely primarily on keyword
+data and only 16% of seos were
+incorporating social media data into
+their SEO strategies so we can see a
+number of pain points here and at the
+end that not many seos are actually
+considering social data When developing
+their their content marketing
+Playbook so what we're going to cover
+today really is our SEO pers owners can
+go about solving and alleviating a
+number of those pain points um so we'll
+run through what SEO personas are and
+why they're important how you can
+develop SEO personas by integrating data
+sources and how you can use your SEO
+personas to then improve your SEO
+content strategy um laddering up into
+your wider content marketing
+Playbook so what are SEO personas well
+they are target audience segments
+they're built by integrating multiple
+data
+sources and you can have multiple SEO
+personas per keyword topic that you're
+targeting for your
+business why are they important well
+they inform the content topics style
+tone and pain points that you want to
+consider in your content marketing
+strategy they allow you to identify the
+influences interests for influence
+marketing and SEO
+strategies and as a result you can then
+do link acquisition at scale for the
+keyword topics that you want to Target
+through the likes of digital PR
+campaigns so you can see here how these
+SEO personas are the are the foundation
+for helping to alleviate a number of the
+pain points that seos are facing in
+terms of generating consistent high
+quality content prospecting uh link
+opportunities um and understanding the
+behaviors and interests of their target
+audiences that are searching around
+their keyword topics we'll do we'll run
+through a use case today so we'll talk
+about HubSpot and specifically the CRM
+keyword topic and how you can go about
+developing SEO personas that would work
+to optimize for the key the CRM keyword
+topic um if you were in HubSpot
+shoes so we'll start with how you go
+about developing those SEO personas now
+on in the diagram here we've got on the
+left hand side we've got the traditional
+keyword intelligence tools that many of
+you may be familiar with Google ads
+Google search console ah sem Rush get
+start these tools allow you to identify
+keywords segment keywords track
+competitors that also rank for those
+keywords and really develop your keyword
+strategy on the right hand side we have
+our audience intelligence and social
+listening tools audience hoot Suite
+Pulsa spark Toro and meltwater and now
+these tools allow you to gather data to
+better understand the behaviors and
+interests of those that are searching
+uh using the keyword topics that you
+identify through the first stage uh the
+keyword intelligence phase and primarily
+what we're doing here with the
+development of SE personas is we're
+integrating our keyword intelligence
+with our audience intelligence and
+social listening data which sort of
+ladders up into audience intelligence um
+and that will allow us to again develop
+our SEO personas and use those as the
+foundations to our content marketing
+Playbook with SEO at its Center or SEO
+success at its
+Center so to begin with you know you
+really have to go through the keyword
+intelligence process I like to classify
+the keyword intelligence process into
+three core stages keyword research
+search landscape analysis and then
+developing your keyword targeting
+strategy from the previous two stages I
+presume this will be very familiar with
+many seos or content marketers uh at The
+Talk today but it's at this stage then
+when you get to your search landscape
+analysis is that you're going to
+integrate and create audience
+intelligence reports based on your SEO
+competitors that you identify at that
+stage and then use that to understand
+your SEO personas that then gets moved
+across when you are starting to develop
+your keyword targeting strategy you look
+at which influences the SEO personas
+behind your keyword topic are influenced
+by and you can use that to develop an
+audience first SEO strategy that will
+then fuel your playbook uh moving
+forwards so we'll go into keyword
+research at a top level first um so with
+keyword research you first want to
+consider keyword identification so again
+using the likes of Google ads search
+console AHF semrush Excel and G sheets
+allows you to identify hundreds
+thousands tens of thousands potentially
+hundreds of thousands of keywords that
+are relevant to your products and
+services once you've done the keyword
+identification phase it's important
+important to segment your keywords into
+topics and subtopics so let's use the
+HubSpot CRM or HubSpot as an example
+here and look at a number of keyword
+topics that HubSpot may want to Target
+such as CRM marketing software and sales
+software these would be our primary
+topics and we would look to tag our
+keywords to those primary topics during
+the segmentation phase but we also want
+to consider our subtopics they may be
+the likes of solutions benefits or
+Enterprise and they generally indicate
+various varying user intents and they
+allow you to tag your keywords
+granularly during the keyword research
+phase because you're going to use that
+data to then uh identify your SEO
+competitors at a keyword topic level
+further down the line so here are some
+examples I'll run through CRM Solutions
+you can see it's relevant to the topic
+CRM but you would also want to tag it as
+solutions to to indicate that
+transactional intent and marketing
+software benefits for for marketing
+software with a subtopic of benefits
+which is an informational intent and
+then Enterprise sales software which is
+relevant to the sales software topic but
+there's also a subtopic there of
+Enterprise that has a mix of of
+informational and transactional
+intent once you've got your keywords
+identified and segmented you're going to
+want to move on to your search landscape
+analyses now your search landscape
+analysis consists of identifying your
+SEO competitors that rank the best
+before the best for those topics and
+subtopics that you've identified at the
+previous stage you can conduct a gap
+analysis to see where your website is
+performing versus those SEO competitors
+for those topics that you want to Target
+you can also conduct Sur intent analyses
+to just confirm your hypotheses around
+the intents of your subtopics and to do
+that you go through the process of
+template analysis to reverse engineer
+the intents and as a result of this you
+prioritize your keywords ahead of
+building out a keyword targeting
+strategy but it's at this stage where
+you're going to want to integrate an
+audience intelligence report so
+basically bringing in audience
+intelligence data um to your search
+landscape analysis to really understand
+and identify who your SEO personas are
+so the phases here include uploading
+your SEO competitors identified during
+the search landscape analysis into an
+audience intelligence tool
+using that to pull back data that
+uncovers your keyword level SEO personas
+and you can also identify where you have
+overlaps between keyword topics that
+have the same audience segments
+searching within them or or SEO
+personas so if we look at that search
+landscape analysis process before we
+create our audience intelligence report
+we have the keyword identification phase
+that we went through we will then tag
+our keywords based on topics and
+subtopics as part of the segment ation
+process that will give us our keyword
+rankings not just for our website but
+also for those other websites that rank
+for the topic or subtopic that you're
+analyzing I suggest you export that data
+from the likes of AHF semrush or get
+stat transfer it into Excel and format
+it and then you can pivot table on that
+data to identify the best performers for
+those various keyword topics that you
+want to Target and they are your SEO
+competitors they're not always Direct
+competitors they may be Publications or
+other types of websites that do compete
+with you in the search
+results and at that point you've got
+your your SEO competitors and you can do
+your search landscape analysis as
+mentioned in the previous slide where
+you're looking at template analyses
+refining intents um and prioritizing
+your keywords based upon the best
+opportunities once again this is quite a
+familiar process I expect to many seos
+here but the next stage is when we're
+going to bring in our audience
+intelligence data to to to build our SEO
+personas so if we look at the CRM
+keyword topic here now I have included
+fictional data here in real life it
+looks something like this but if we were
+to analyze say 60 keywords for that have
+been tagged as a CRM topic to understand
+which websites rank for the most number
+of keywords that have being tagged as
+CRM but also their average rank the
+results will show you the the analysis
+will show you the top ranking or best
+performers uh for that topic these are
+your SEO competitors so for CRM we have
+HubSpot Zoho Salesforce pipe Drive
+active campaign and maretto so I would
+classify these as my SEO competitors in
+this stage of building out my SEO
+personas and what you're going to want
+to do crucially is map those SEO
+competitors that you see in the search
+results that you see through your
+keyword data across to their relevant X
+profiles formerly known as Twitter uh to
+their then use those handles those X
+handles when you go about creating an
+audience intelligence report or an
+audience report in an audience
+intelligence software or platform so I'm
+familiar with audience uh as my
+preferred tool of choice but there are
+many others as I mentioned earlier spark
+Toro is another example here and what
+you're going to want to do is you're
+going to want to go into creating an
+audience intelligence report they're
+named differently in the different tools
+but an audience it's called an audience
+intelligence report under the insights
+category so you're going to want to go
+in and create a report named your
+keyword topic and then SEO personas so I
+would call mine because I'm interested
+in the CRM keyword topic I will call it
+CRM SEO personas I am going to create an
+audience a profiles attribute report
+where the tool will analyze the
+followers of the handles that I upload
+to understand their interests uh and
+behaviors through big data analyses and
+what I'm going to want to do is I'm
+going to want to upload my SEO
+competitors for the CRM keyword topic
+and of course this could vary dependent
+on the topic that you are targeting so
+that as I mentioned will include
+Salesforce active campaign Zoho Adobe
+maretto and pipe drive and I will also
+upload the HubSpot or the website that I
+am in in responsible for and what you
+then get from an audience intelligence
+platform specifically audience in this
+instance is a a report that has analyzed
+using big data analysis the social
+behavioral data of all of those 250,000
+members that have been included in the
+analyses because there is a cut off
+point um that follow any of those SEO
+competitors for CRM and as we can see
+here the tool has identified that there
+are marketing creative professionals
+Cloud engineers and developers and web
+entrepreneurs and digital marketers
+there three separate audience segments
+that are searching around the CRM
+keyword topic we're mapping data from X
+across into uh basically into Google
+we're using Google as an indicator of
+what to upload into an audience
+intelligence report to get that
+additional information about The Who
+Behind our keyword topic so let's dive
+into what that looks like so you can
+then explore your SEO personas or your
+audience segments as they're called in
+the tools um in Greater depth
+understanding their influences um their
+influence entities so let's take a look
+at the creative um professionals here so
+if I dive in to this segment which makes
+up 21.6% of those that follow the CRM
+SEO
+competitors we can see here all of the
+uh influences and brands that those
+people engage with and follow or follow
+uh on a regular basis and within the
+platform you get Affinity data
+uniqueness scores and suddenly I'm
+getting a better picture of exactly who
+this target audience is behind the CRM
+keyword topic or at least one of them
+and this is constituting a single SEO
+Persona within the CRM keyword
+topic so what happens there well what
+happens next sorry well what you can do
+is you can export that data and you can
+start to look uh you can start to get a
+good understanding of who this uh
+marketing creative professional is uh
+they engage with and follow social media
+example
+marketing week campaign marketing B2B uh
+the uh campaign magazine and all of this
+all of these are my influencer entities
+that I will that I will eventually
+upload into a social listening tool to
+get a better understanding of what my
+SEO personas are currently interested in
+or consuming let's take a quick look at
+another SEO Persona here so we've got
+our Cloud Engineers if I dive into this
+segment within the CRM keyword topic we
+can see here that our Cloud engineers
+and web developers are influenced by the
+likes of The Hacker News a16z Computer
+World stripe MIT AWS Google cloud and
+again we're getting different influencer
+entities here for the cloud Engineers
+than we did for the marketing creative
+professionals but they are both active
+audiences that would be interested in
+CRM solutions that will then be
+important for when we're developing our
+content marketing playbook for targeting
+the CRM
+uh keyword topic finally we'll take a
+look at our entrepreneurs and digital
+marketers which is about
+11.2% of the total audience and we can
+see here that they are uh engaging with
+and following founder um CMI uh search
+engine Journal search engine watch
+semrush Digital Trends growth hackers
+among others again different influencer
+entities than the previous two
+audiences so now that we've got a a
+better understanding of those St
+personas within the CRM keyword topic
+how can we use them well what we can do
+is we can well we have identified those
+influencer entities and we can use those
+to prospect targets for link acquisition
+that we may um Target through through
+digital PR campaigns a key factor in in
+ranking um for SEO is of course building
+links and
+Authority you can also use those seus to
+inform your social lisening and web
+monitoring setups and as a result it
+should give you better idea generation
+for SEO topic modeling and digital PR
+campaigns which are going to be very
+important as you reach that final stage
+of your um of your playbook which will
+be developing your keyword targeting
+strategy and fueling it uh with regular
+content again uh these were concerns we
+saw in the early uh survey of the the
+talk that seos have and this helps to
+alleviate those concerns so we've got
+our SEO personas we know the keyword
+topics we want to Target it's time to
+develop our keyword targeting strategy
+and and fuel that uh that that that
+strategy with
+content at this stage you're going to be
+developing your SEO content plan you're
+going to be clustering your keywords um
+cleaning them and clustering them based
+on your topics and subtopics you've
+already you've got them prioritized at
+this stage now you need to create
+content to bolster the performance for
+those keyword topics and you've got to
+fuel it by building back links on a
+regular basis through white ha hat
+techniques of course which really boils
+down to PR and Partnerships in
+2014 but at this stage the way to level
+up and supercharge that th those key
+parts of your keyword targeting strategy
+is to uh conduct influencer entity
+analysis uh using your SEO personas and
+understanding who their influenc
+entities are and what you'll want to do
+here is set up Social listening on the
+top one to 5% of your SEO persona's
+influencer entities you can also do
+content analysis on those influencer
+entities using the likes of buz suumo um
+except that there's many other tools buz
+suumo is one that comes to mind ahit
+draft semrush and that will allow you to
+then go about building out your your SEO
+topic modeling um in line with those
+priority keyword topics and we're going
+to go through how you can do this for
+CRM uh in the next few
+slides so going back to the basics of
+SEO you should always have SEO pillar
+Pages for the topics that you want to
+Target so in line with the use case that
+we've been exploring in today's session
+we talked about CRM marketing software
+and sales software at HubSpot we will
+have different pillar pages that cover a
+wide um variety of of of information and
+subtopics uh for our primary topic um
+for each of those for each of those
+primary topics and each one will have
+its own uh URL what we're going to want
+to do is we're going to want to build
+out satellite Pages for these pillar
+pages to support their performance um
+these are signals that search engines
+like to see when you're publishing new
+fresh unique content that is helpful for
+users um and also you want to create
+content that can earn links and then
+internally link back across to your
+pillar pages to bolster the performance
+of every URL uh in the topic
+cluster so what you can do here is
+you're going to go and upload into
+social listening tools your influencer
+entities for the SEO personas that
+you've identified you can use a variety
+of tools here you can use Pulsar to
+upload the X accounts of the influencer
+entities into the platform uh you could
+also use hoot sues list analyses uh to
+to monitor uh frequent sues or tweets or
+X posts in relation to those influenc
+entities so let's take a look at how you
+would go about setting that up for the
+Creative Marketing professional so as we
+saw earlier within the CRM keyword topic
+we have the Creative Marketing
+professional uh SEO Persona uh we know
+the influences uh their influence
+entities as outlined here on this slide
+and what we're going to want to do now
+is we're going to want to upload those
+influencer entities into a social
+listening tool to stay on the pulse of
+the latest trends um conversations that
+are that are happening in real time to
+then inform the content that we're going
+to create to bolster the performance of
+our CRM keyword topic um as we as we saw
+earlier on ideas can often run dry very
+quickly if you're only using keyword
+data um you know that mainly that's
+Evergreen uh data there it's not
+refreshed very often whereas social data
+is very Dynamic and can really inform uh
+a much more Dynamic and effective
+content and link strategy in support of
+your keyword topic uh your priority
+keyword topics so you're using this data
+to inform that content marketing
+Playbook I recommend using something
+like HootSuite it's relatively low cost
+for um Freelancers and and agencies or
+in-house teams um used to have a free
+solution I think now there is it's it's
+paid um but what you can do here is use
+uh lists um to set up lists for your
+various SEO personas and track their
+influencer entities within those lists
+to get dashboards of the most relevant
+content in real time so let's say we're
+going to create our list for the
+creative marketers uh an SEO persona for
+the CRM keyword topic you can see here
+that I'm going to go about uploading
+those influencer entities that I've
+identified in my audience intelligence
+report into hoot Suite in this list Cru
+and as a result I can then build
+dashboards showing all of the latest um
+conversations uh latest news and trends
+for the uh influen entities that my SEO
+personas are interested in and you can
+see here at the top that I've I've
+tagged I've called all of these lists my
+keyword topic followed by my SEO Persona
+and you've got a a dashboard now when
+you're thinking about how you target the
+CRM keyword topic you know your
+audiences you know The Who Behind the
+keyword topic and you can see in real
+time uh the content that's resonating to
+inform your content strategy uh and
+digital PR
+campaigns so some of the insights that I
+might get from doing this listening is
+that the fact that the UK is bringing in
+new data protection laws um the fact
+that there's a there's a lot of there's
+a movement towards building Greater
+authenticity within advertising uh at
+the moment we've got
+uh a lot of interest in understanding
+how to build emotional connections um
+and new Frameworks that are being
+explored we've got conversations about
+the importance of podcasting as we move
+into 2024 there's chatter about nfts and
+the metaverse uh essentially web 3
+related topics uh within the CRM space
+or or for those SEO personas that are
+searching within the CRM keyword
+topic and what we can then do is support
+our CRM Hub Page by building out our
+topic modeling or or some people call it
+topic clustering um using that social
+behavioral data so some examples of of
+blog posts that I may uh create as a
+result of setting this this process up
+is building a checklist for preparing
+your CRM for UK data protection laws how
+to optimize your podcasts for email
+newsletter signups predictions for CRM
+strategies in the metaverse brand
+emotional response index surveys uh an
+expert opinion on how to build two-way
+customer Communication in 2024 and how
+to use podcasts to improve retention and
+engagement now each of these blog posts
+alone has the potential to generate
+links uh they are they are helpful
+content assets because we know that our
+personas are interested in these topics
+and they all should internally link
+together and to your CRM Hub page to
+bolster the performance of that CRM
+topic cluster and as we know they're
+relevant to our to our SEO personas of
+marketing creative professionals Cloud
+Engineers web entrepreneurs and digital
+marketers and finally you know we can
+also as much as we can create content uh
+that lives on our site to support uh our
+topic cluster uh we also going to need
+to build links on our ongoing basis and
+Link ideas can be really hard to come by
+if you're using keyword data alone
+because they don't give you enough
+information about the interests and
+behaviors of your target audience that
+search using that keyword topic so what
+you can then do is use this data to
+ideate digital PR campaign ideas that
+will build uh or will generate backlinks
+so for instance from the data that I
+just showed you you may want to create
+brand emotional response surveys testing
+different ad creatives to your users to
+get uh information on which respond best
+and then Distributing that out to the
+influenc entities that were already
+covering the topic we could create a
+podcast ranking index by category
+because we know podcasts are a very
+effective medium that are being covered
+a lot at the moment by those influencer
+entities those websites that we want
+links from we could survey Founders on
+how they plan to grow online in 2024 and
+their concerns about CRM or Exploration
+with new channels such as the
+metaverse and that's some ideas there
+and I just want to say thank you
+everyone for taking the time to listen
+to the strategy today and for us to kick
+off uh the coach by triple Dart series
+together um and I will pause there for
+any
+Q&A super I think that is very
+insightful already we have a couple of
+question coming in and out of my
+personal curiosity I have a couple of
+questions as well so the first question
+is how will we understand which audience
+is more relevant for a particular
+keyword great question so when you you
+go about so let's say you are targeting
+marketing software as a keyword topic
+you identify the websites that rank for
+marketing software you upload them to an
+audience intelligence tool because
+they're your SEO competitors for
+marketing software that the audience
+intelligence tool will give you data it
+will give you a score that indicates the
+um the the Affinity uh to the
+to the um X handles that you uploaded
+into it which are essentially your FCO
+competitors so if you were to use
+audience it gives you Affinity scores
+and uniqueness scores um in the platform
+under influencers and Brands and I would
+recommend looking at that data to give
+you an indication of exactly um which
+influen entities or or which personas
+themselves are the most relevant um
+arguably to understand which persona is
+most relevant uh you'll be able to see
+in the broad view um the percentage of
+those that were analyzed that are in any
+given uh audience segment um so you saw
+in the report that I shared for for CRM
+that the largest um segment there were
+were web developers um and Cloud
+Engineers um and then you had creative
+and marketing professionals uh and then
+you had Salesforce Engineers an entire
+category there and then finally you had
+um uh your digital marketers um so I
+would use that data to go by
+understanding which personas are most
+relevant for that keyword topic that
+you're
+targeting perfect thank thanks RoR the
+second question we have is are those
+topics and articles identified in the
+SEO topic clustering need to be
+optimized for the CRM keywords or are
+those more thought leadership style
+articles
+great question great great great
+question so what I would say here is
+that your keyword intelligence process
+your traditional SEO sort of process
+that gives you your Evergreen content
+pieces that gives you the content assets
+that you're going to want to optimize
+for Relevant keywords you know CRM plus
+the subtopics that you've identified
+within the CRM topic I would recommend
+always trying to only have one URL per
+um user intent grouping uh of keywords
+within a topic um generally consisting
+as a subtopic um that's important
+because you don't want to cannibalize
+your your your your keywords with
+multiple URLs targeting the same keyword
+intent grouping however this strategy
+allows you then to get the ammunition to
+create thought leadership that supports
+the performance of those Evergreen sort
+of traditional SEO
+um content pieces they are the ones that
+you're going to want to rank for the for
+the keywords that you're probably
+identifying your keyword research phase
+but in order to continually publish
+helpful content for users you're going
+to want to adopt this process because
+it's also going to be more relevant and
+therefore encourage uh link building uh
+or sorry attract Links at a greater Pace
+than it would if you just created a sort
+of static Evergreen keyword informed
+blog post again with AI now um everybody
+is going to be able to replicate that
+same blog post with a couple of clicks
+uh in a in a tool like Jasper um so
+you're going to want to really level up
+your thought leadership game um and this
+approach should help you do
+that perfect so we have a third question
+but not directly related to the topic uh
+um so I mean they're talking about
+Google ads so how Google ads allows you
+to Target based on a and Company size
+Etc and you know how accurate is the
+social listening data that we getting
+through these tools when compared to
+like say if you're having a paid
+marketing strategy where you're also
+working with something related to like
+an in Market audience how different will
+it be from the Google ads data to what
+we are using with respect to social
+listening
+data great question so you know they are
+different data sets because the data is
+coming from interactions across
+different platforms from from from
+everything that I I'm aware of um I
+would say that you have to be aware you
+have to be prepared for some disparity
+between the two however um with a sort
+of solid framework that you build out in
+your um G sheets or your Excel documents
+uh you know you can you can sort of glue
+glue the data together but I would just
+you know be prepared that certainly if
+you're doing paid um which isn't my my
+my area of expertise there you know I I
+presume you will get or I presume you
+won't be able to fully um glue that data
+together when you're talking about
+audience sizes and you know how how
+often you're going to reach a certain um
+in Market segment ac across two
+different data sets but um from an SEO
+point of view or from a Content
+marketing point of view that kind of
+matters less
+um and that's why sort of is effective
+for uh for the organic
+side perfect and we have an anonymous at
+ND asking do you have any recommended
+courses uh to learn digital
+PR ah great question so do you know I
+will always revert to learning seo. iio
+um Al Solus um resource on learning SEO
+so that's learning seo. and then within
+that she has a section in there for uh
+for sort of Link building um I can't
+remember exactly what it's called and
+there are links off to some of the be
+best sort of digital PR resources um so
+I would highly recommend taking a look
+at that um and it will likely take you
+off to various playbooks from some of
+the sort of big player agencies um
+around the
+world perfect and and one last question
+coming in from me RI uh so when when
+you're using the social intelligence to
+build Authority around the topic so one
+thing that I've observed is uh you know
+you don't have volumes for a lot of
+these uh you know uh keywords that we
+are looking for but it makes a lot of
+sense as a standard on topic when
+someone is talk and it requires deep
+subject matter expertise and these are
+common questions that keep getting asked
+either uh like say if you're a product
+manager or if you're a customer support
+executive we commonly solving of
+problems but these questions keep coming
+up in your either support forums or you
+can find it commonly occurring in a
+platform like redit where they're
+discussing about this particular topic
+but when you go back and try mapping
+that to you know intent on search it's
+probably not there so uh how do we take
+a call on bringing this as part of our
+overall content
+strategy yeah great great question a I
+think this is going to be something that
+the
+community experiments with over the
+coming years certainly as you know
+visibility for some of those Community
+platforms like Reddit is increasing
+exponentially in Google search there's
+value in um answering questions or
+engaging directly in on those platforms
+themselves um so that when users find
+them through organic search they're
+they're they're able to to to sort of
+you're able to manage the uh the the
+conversation there in terms of
+specifically what content you would
+create on your own channels like like
+your website um you know I think that
+does come down to a resourcing call
+so still in
+2024 it is Central to your strategy to
+um have enough resource to historically
+optimize the Evergreen SEO content that
+you already have have in play so if you
+were to ask me Rory should I go about
+creating a thought leadership piece um
+to link across to my evergreen asset
+with a finite amount of resource that
+doesn't allow me to refresh that asset
+itself or historically optimize it after
+it's been six months I would say I would
+say definitely go about refreshing the
+actual um SEO asset itself first and
+then when you have the resources you can
+go go about building out the thought
+leadership um it is a balance um but I
+just wanted to kind of Stack rank them
+that the data that I see indicates that
+regularly refreshing your content with
+eat related signals which you can get
+from this process if you consider um
+leveling up your existing content rather
+than creating new content um that is the
+way to go um if it's a resourcing call
+if it's not uh and you can optimize both
+then I would balance that out across
+your monthly publishing schedule um you
+know in it's a pretty balanced
+manner super I think yeah very
+insightful Rory I think um uh I mean
+whatever you have covered in the last 35
+40 minutes I think we have a bunch of
+takeaways uh and even personally for
+triple dat as well because we we've been
+contemplating on a bunch of these things
+with the clients that we currently
+working with so it's been really really
+insightful again um thanks a lot for uh
+doing this with us and being our
+inaugural speaker for Coach by triple.
+it has been a very insightful and an
+inspiring webinar and for the audience
+we hope you have gained uh valuable
+knowledge and practical tips from you
+know whatever RI has uh spoken about uh
+we'll also kind of uh you know would
+like to say that we will be sharing the
+webinar recording and uh the slides for
+you to kind of uh go through and also
+thanks a lot for your engagement and
+thoughtful questions and uh you know
+active participation uh and just make
+sure that the ending doesn't learn here
+if you end here so if you have any
+questions at any point of time just feel
+free to you know drop in a note to us we
+will be more than happy to answer those
+questions because the and the motive
+behind this session is also to make sure
+that uh practical knowledge goes to each
+one of you who are participating in
+these sessions and how you can plug and
+play these functional playbooks into
+into your day-to-day strategy when it
+comes to marketing thank you rori and
+thanks a lot for doing
+this thank you so much mahes thank you
+everyone um and good luck for the rest
+of the series uh I hope everyone has a
+wonderful
+day perfect thank you bye
+bye-bye

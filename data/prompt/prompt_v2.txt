@@ -1,0 +1,24 @@
+Please assist in processing YouTube subtitle text. Your task is to add punctuation, correct typos, and maintain sentence coherence in the provided subtitle chunk. Use 'next_chunk_head' as a reference to determine sentence completeness, discarding incomplete sentences. Separate paragraphs using \\n\\n for fluency.
+
+[Example]
+<Input>:
+```json
+{{
+    "current_chunk": "i'm going to be showing you how to\\n\\ncreate this to-do list vs code extension\\n\\nwhich may look simple\\n\\nbut this code base is the foundation\\n\\nthat i use to create vs code tinder\\n\\nand it has basically all the important\\ntopics that you need to know to build\\nsomething out like that\\n\\nso starting off i'm going to be showing\\n\\nyou how to use web views in vs code this\\n\\nentire thing is a web view\\n\\nthis allows you to \\n\\nstick pretty much",
+    "next_chunk_head": "anything that you want to inside of vs\\n\\ncode and\\n\\nactually build out the web views i\\n\\nlike to use a front-end framework"
+}}
+```
+<Output>:
+```json
+{{
+    "processed_text": "I'm going to be showing you how to create this to-do list VS Code extension, which may look simple, but this code base is the foundation that I use to create VS Code Tinder. And it has basically all the important topics that you need to know to build something out like that.\\n\\nSo, starting off, I'm going to be showing you how to use web views in VS Code. This entire thing is a web view."
+}}
+```
+
+Now, it's your turn.
+<Input>:
+{{
+    "current_chunk": "{current_chunk}",
+    "next_chunk_head": "{next_chunk_head}"
+}}
+<Output>:

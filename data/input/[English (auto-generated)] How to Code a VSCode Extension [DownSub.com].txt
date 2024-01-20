@@ -1,0 +1,11400 @@
+i'm going to be showing you how to
+
+create this to-do list vs code extension
+
+which may look simple
+
+but this code base is the foundation
+
+that i use to create vs code tinder
+
+and it has basically all the important
+
+topics that you need to know to build
+
+something out like that
+
+so starting off i'm going to be showing
+
+you how to use web views in vs code this
+
+entire thing is a web view
+
+this allows you to stick pretty much
+
+anything that you want to inside of vs
+
+code
+
+and actually build out the web views i
+
+like to use a front-end framework
+
+in this video i'm going to be showing
+
+you how to use felt which is what i've
+
+been using for my past two extensions
+
+and really
+
+liking it but as you're gonna see you
+
+can use any front framework you want as
+
+long as it spits out a javascript file
+
+at the end
+
+after that we'll implement github oauth
+
+so like i can log out here and i can
+
+press this button here to log in with
+
+github
+
+and i'm already kind of authenticated
+
+with github so it just you know
+
+automatically says we're auth
+
+and then we go in but if say i wasn't
+
+logged in with github it would have me
+
+type in my github credentials
+
+and then it knows who i am based on my
+
+github profile so it says hello bin
+
+there
+
+right and then after that we're going to
+
+integrate with an api well we have to
+
+kind of integrate with an api to use
+
+github oauth2 so we're going to set up a
+
+node.js server
+
+where we store stuff in a database and
+
+interact with that for our webview so we
+
+can actually persist data right this
+
+data doesn't go away
+
+after i refresh or whatever if that
+
+sounds interesting to you and you want
+
+to build the next big vs code extension
+
+continue watching also by the way all
+
+the code for this is on github i'll put
+
+a link in the description if you want to
+
+just look at that or if you get stuck in
+
+the middle
+
+want to check that out also there'll be
+
+a link to my discord if you want to come
+
+and ask questions or talk to other
+
+people that have gone through the
+
+tutorial
+
+with that said enjoy the tutorial we're
+
+going to start by following the getting
+
+started that vs code has for creating
+
+your first extension so you're going to
+
+want to come to this url
+
+and i'll put a link to this in the
+
+description and the first thing that
+
+we're going to do is just copy
+
+this code right here and then you're
+
+going to go to your terminal and you're
+
+going to paste it and we're going to run
+
+it
+
+so you're going to need node.js
+
+installed on your computer to be able to
+
+run npm
+
+and then this is the g flag which
+
+installs this globally
+
+and then we're going to be able to run
+
+this yo command which we're going to do
+
+next
+
+yo code and this is going to create a
+
+project for us
+
+all right so finish installing so i'm
+
+going to run yo code here
+
+and then we're just going to fill out
+
+the stuff that it asks us so we're going
+
+to be creating a new typescript
+
+extension so i'm going to select this
+
+first one here
+
+you can do this in javascript but i
+
+would recommend following along in
+
+typescript that's what i'm going to be
+
+using
+
+and i'll be showing you along the way if
+
+you're new to typescript the things that
+
+you need to know
+
+and i'm going to call my extension vs
+
+to do and i'm just going to keep the
+
+default
+
+and what's the description keeping
+
+track of stuff and initialize a git
+
+repository sure
+
+bundle the source code with webpack
+
+actually we're gonna hit
+
+yes for this uh reason for that is we're
+
+gonna i wanna show this at the end
+
+because this is good when we deploy this
+
+to production and i'm going to go ahead
+
+and pick yarn but you can pick npm if
+
+you want actually you know what
+
+let's pick npm today i'm feeling npm
+
+when that's done you should have a new
+
+folder with the name of your extension
+
+so i called mine vs to do so i have that
+
+there and i'm just going to
+
+open it up in vs code so i have the cli
+
+for vs code or it's at least installed
+
+in my path so i can just run code and
+
+then the name of the folder and it's
+
+going to open it up
+
+and now i have it open in vs code you
+
+can also just open it regularly by going
+
+up here
+
+and open and all that jazz okay
+
+so this is our first extension the
+
+boilerplate for it
+
+the main place we're going to be doing
+
+stuff in is source and extension
+
+i'm going to delete tests we're not
+
+going to worry about tests for this
+
+tutorial
+
+and let's just zoom out actually a
+
+little bit
+
+maybe once
+
+all right so they got a console log here
+
+i'm gonna be showing you where you can
+
+see the console logs for things
+
+why don't we just press f5 first and
+
+that'll launch the debugger
+
+and actually launch our extension so
+
+what i like to do
+
+and it takes a second to build so we'll
+
+give it a minute uh the specified task
+
+cannot be tracked
+
+oh yeah um configure task
+
+i don't know compile oh wants me to come
+
+and configure it
+
+this is what i get for picking webpack
+
+okay so we're gonna go into the
+
+package.json and add a new script
+
+already has one for us if you go into
+
+tasks.json
+
+these are the tasks that it runs before
+
+it actually launches the extension
+
+and so in our case it builds using
+
+webpack
+
+now maybe there's a good way to set this
+
+up but we literally just ran the code
+
+that we got from the boilerplate and
+
+it's already barking at us
+
+so what i like to do is just not
+
+actually use this at all
+
+and i will just remove all the tasks
+
+that it runs and instead what i'll do is
+
+i will just go to
+
+my terminal is it already running i'm
+
+just going to control c out of that
+
+and i will just run it manually myself
+
+so
+
+if we go back to our package.json and we
+
+see
+
+scripts here you'll notice one called
+
+watch
+
+and this just runs webpack and we're
+
+going to say watch
+
+and this is basically going to take our
+
+source code here which is just the
+
+extension and it's going to compile it
+
+into this dist folder and you can click
+
+it here and
+
+webpack just does its thing where it
+
+transpiles all your code
+
+right so it takes our extension.ts and
+
+turns it into a javascript file
+
+and it looks like this all right and
+
+then after that we're ready to execute
+
+the code
+
+you just press f5 i ran to run this
+
+every time
+
+select a build test there's no default
+
+build task maybe i need to go into my
+
+launch
+
+pre-launch task default build yeah let's
+
+kill that
+
+now f5 perfect and now when we press f5
+
+it's just going to launch our extension
+
+and then we're good to go i forgot what
+
+our extension even does by default i
+
+think it's just
+
+a yeah it's just a command
+
+so you can see here that it's
+
+registering a command called hello world
+
+so if i do command shift p
+
+or control shift p if you're on a
+
+windows computer
+
+and then here you can see that there's
+
+this little arrow here that's how you
+
+get the this is like the command prompt
+
+window and then you put a carrot there
+
+and then carrot lets you do commands in
+
+vs code so we're going to be running
+
+commands
+
+this is also useful even if you're not
+
+you know doing extensions
+
+and if we search for hello world this is
+
+actually going to be ours
+
+and we can just run it it says hello
+
+world from vs to do on the bottom right
+
+here
+
+so now if we wanted to change this i'm
+
+just going to get rid of these comments
+
+because they're kind of annoying me
+
+there we go just a little bit easier to
+
+see the code and now here i am going to
+
+change the message
+
+i'm just going to say hello from vs to
+
+do now if i come back over here and
+
+rerun this
+
+right hello world from vs to do it
+
+didn't change the text right
+
+so what you need to do is actually
+
+reload this window every time you make a
+
+change
+
+over here so to reload it
+
+i can open up command prompt and by the
+
+way you're going to want to get
+
+comfortable like
+
+opening up this command palette so
+
+command shift p is going to be your
+
+friend here
+
+and we're going to reload the developer
+
+window so you can run this right here
+
+right now it's kind of tedious to open
+
+that up and do that every single time so
+
+i recommend using the shortcut to
+
+command
+
+r or i assume it's let's see
+
+reload if you just hover it'll show you
+
+on the right what the the shortcut is
+
+if it's different on mac i mean on
+
+windows probably is
+
+um so that's we're going to use and then
+
+we can go and run our hello world
+
+command and you'll notice the text has
+
+changed
+
+all right so that is kind of the basics
+
+of how we are going to make changes
+
+and do things we're going to go over
+
+more of what's going on here
+
+next but basically we are going to start
+
+our extension
+
+compile it using webpack by running yarn
+
+watch
+
+i said i was going to use npm there you
+
+go
+
+npm run watch all right and then my
+
+launch.json we just cleaned out you're
+
+never going to have to touch that again
+
+we just press
+
+f5 and that's going to launch the actual
+
+extension over here
+
+and that as you noticed if i stop this
+
+all it does when i press f5 is create a
+
+new vs code window that i can do
+
+test things in so it you know this is
+
+just i actually have
+
+i think a thing open but i can just go
+
+and open whatever project i want in here
+
+right this is just a normal vs code
+
+window that also has our extension load
+
+in it so we can run
+
+our stuff so it lets you test it on real
+
+things
+
+okay so let's add our own custom command
+
+now
+
+so you'll notice a few parts about this
+
+the first thing is
+
+this register command function that we
+
+can call so i'm going to come down here
+
+and say vs code dot commands dot
+
+register command
+
+and here you'll notice kind of like the
+
+syntax for it is we prefix it
+
+with the name of our extension so i'm
+
+going to follow that and then here i'm
+
+going to say
+
+ask a question this is what i'm going to
+
+call it
+
+i mean that's a crappy name but i'm just
+
+gonna actually do ask
+
+question that way it's a little bit less
+
+cracky
+
+and then i'm gonna have a function here
+
+so this is what's the logic that's gonna
+
+get run whenever this gets called
+
+right and so i can copy the thing above
+
+if i want to i can show an informational
+
+message as before
+
+but the nice thing about this message or
+
+one of the cool things you could do is
+
+also get input from the user
+
+so i could say how was your
+
+day you are day no
+
+and then here i can say good
+
+bad and then
+
+you'll notice that
+
+context.subscriptions.push this
+
+disposable thing
+
+all this does is basically it's getting
+
+the return value from this
+
+and the purpose of this is for vs code
+
+to be able to dispose of this listener
+
+whenever it's done
+
+and usually what i will do is not create
+
+this like
+
+variable and i will just wrap
+
+this so you see i just
+
+wrapped the push and i put this inside
+
+and that just makes it like a little bit
+
+simpler
+
+and i'm going to do the same thing here
+
+because you don't really need the
+
+intermediate variable but you may
+
+you can add that if it helps you all
+
+right so i added this but this is not
+
+the only thing you need to add when you
+
+add a command
+
+if you also go into the package.json you
+
+need to tell
+
+vs code all the things that you add in
+
+your extension
+
+so we are going to tell it the command
+
+that we added here
+
+so contributes commands you should see
+
+in your package.json and we're going to
+
+add it there
+
+and you can see the previous command
+
+that they had there and here i'm going
+
+to say ask question
+
+and so this string should match what you
+
+put here
+
+and then here the title this is what's
+
+actually going to show
+
+up when a user you know types here so
+
+you see how it says
+
+hello world there and insead has
+
+developer colon
+
+that you can also prefix some of this
+
+stuff i think it's called group
+
+okay no it's not so i just did control
+
+space and gave me some autocompletion
+
+looks like it's called category
+
+and so what i'll usually do is i'll
+
+actually say vs to do here
+
+that way they know that this is coming
+
+this command is coming from the vs to do
+
+extension and you'll see what this looks
+
+like in a second
+
+and then here i guess in this case we're
+
+really answering a question but
+
+whatever all right so
+
+that's the i guess metadata and then we
+
+need to tell
+
+vs code to actually activate it and
+
+that's the activation events here
+
+we're going to copy this and then just
+
+add our ask question
+
+all right so i made changes so i need to
+
+come over here and i need to reload it
+
+all right so command r for me and i'm
+
+just going to run this so command shift
+
+p to open up the palette
+
+and then i'm going to go to my ask
+
+question so you'll notice how it has the
+
+category in front here
+
+so that's pretty handy i'm gonna press
+
+this so you can see it now says how's
+
+your day
+
+and i can press good or bad so my day
+
+was pretty good so i'm gonna press
+
+good now you may wanna get actually some
+
+you know response and actually do
+
+something with the data so if you hover
+
+over this
+
+i can see the type of this and and we
+
+see right here that it says it's a
+
+venable
+
+so the venables are basically just
+
+promises but they have special names
+
+there may be something different but i
+
+don't i actually don't know what's
+
+different about them i just treat them
+
+as promises
+
+so what i do here is i can make this
+
+asynchronous and i can say the answer is
+
+equal to
+
+and i can await the response from this
+
+and you'll notice it's going to give us
+
+a string
+
+or undefined and i believe undefined
+
+comes if like the user clicks out
+
+so if i ask a question and i click the x
+
+for example
+
+i believe that gives you undefined
+
+and so here i'm just going to say you
+
+know if answer was
+
+equal too bad maybe we show an
+
+informational message right
+
+so paste that here
+
+sorry to hear that
+
+otherwise we're just going to console
+
+log
+
+answer okay
+
+so come over here and reload our
+
+extension
+
+and again i should probably mention this
+
+earlier but i'm just going to keep
+
+the mpm watch command running the entire
+
+tutorial so it's just going to basically
+
+recompile our code
+
+as i'm typing here and then if your
+
+window ever closes you know or you know
+
+guess
+
+you stop it manually just come here and
+
+press f5 to reopen it
+
+all right so i'm going to ask a question
+
+and again i relaunched it but make sure
+
+to always refresh whenever you make a
+
+change
+
+all right so i'm going to ask a question
+
+here
+
+and you'll notice it takes like a second
+
+there and need to activate the extension
+
+all right so that i'm going to say i had
+
+a bad day and we could see that
+
+awesome and now let's do a good day
+
+right and you're wondering where did the
+
+console log go so if you come back over
+
+here
+
+and you hit control till day it'll
+
+toggle the
+
+terminal i believe if you also go
+
+terminal new terminal you can grab it
+
+but again control tilde is the
+
+shortcut that i use and you go to debug
+
+console
+
+you can actually see the console locks
+
+so if i see the object here it actually
+
+says answer good
+
+and so if you need to see console logs
+
+when you're doing things that is how you
+
+see it
+
+next we're going to add a web view to
+
+our extension because this allows us to
+
+pretty much add whatever type of content
+
+we want to in vs code
+
+so if you go to google and just type vs
+
+code webview
+
+two links will come up number one you
+
+can click the first one
+
+this webview api if you want to read
+
+through and follow along with this
+
+otherwise this is a really good
+
+repository right here
+
+on github so this is under the vs code
+
+extension
+
+samples it's the webview sample you can
+
+follow along with this but it has some
+
+extra stuff
+
+that we rip out so i'm going to show you
+
+something else we're going to do but i
+
+wanted to mention this repository
+
+this has a ton of examples and this is
+
+pretty much how i learned
+
+all my vs code knowledge right here is
+
+just going through these projects and
+
+copying pasting stuff
+
+so if you get stuck on how to do
+
+something in vs code later that we don't
+
+cover in this tutorial
+
+i highly recommend coming to here and
+
+seeing if one of these
+
+uh github projects has it all right so
+
+what we're going to do
+
+is go over to github dot or slash
+
+bin award slash fascinder and we're just
+
+going to grab
+
+one of my components here so i'm going
+
+to press go to file
+
+and we're going to grab what's what i
+
+call provider
+
+and all it is is if i go back to my web
+
+view while that's loading if we go to
+
+source
+
+extension we're going to create a panel
+
+they call it a cat coding panel and
+
+there's a few extra things
+
+so i'm going to get a slimmed down
+
+version come on go to file
+
+okay um provider
+
+and i want actually did i call it i
+
+think i'll
+
+call it something else yes swiper panel
+
+is what i want
+
+all right and you can just go to this
+
+url too i'll probably put this in the
+
+description
+
+if i remember and i'm going to copy this
+
+copy
+
+and i'm going to come into vs code here
+
+and i like to just stick this
+
+in a new file here so i'm just going to
+
+call this a hello
+
+world panel and
+
+put ts and i'm going to paste it in
+
+now this also has a few things that we
+
+do not need
+
+so this entire top part we don't need
+
+for now
+
+and i'm going to rename this class here
+
+to be
+
+hello world panel
+
+and you'll notice that we use that kind
+
+of everywhere so actually
+
+i'm going to ctrl z and if you press f2
+
+you can refactor and rename in all the
+
+places so i'm going to do that
+
+hello world
+
+all right view type here this is just a
+
+string of the name so i'm just going to
+
+call this hello world
+
+and then let's scroll down see the
+
+errors all this is fine
+
+update did receive message all right
+
+we're going to be getting into
+
+um on dead receive message later but
+
+this is basically a switch statement
+
+that we're going to use to communicate
+
+and i'm just going to delete some of the
+
+stuff i have here
+
+set window info i kind of like my on
+
+info on errors i'm going to keep those
+
+and we're going to talk more about that
+
+in a second
+
+i'm going to just comment out the tokens
+
+because we're probably going to do
+
+something like that later
+
+all right so this is what it looks like
+
+now in the update function
+
+the error should be gone from there all
+
+right so
+
+this this function right here is
+
+important so this is how it gets the
+
+basically the files for the web view
+
+that actually renders
+
+so you notice here it is getting a file
+
+called
+
+swiper.js from the app directory we're
+
+going to talk more about
+
+compiling this using svelt in a second
+
+but we're just going to get vanilla
+
+javascript working first
+
+all right so there's two basically css
+
+files that vs code
+
+gives us or they recommend from just
+
+their cad example
+
+that we're going to use so back at the
+
+cat example if you go to source
+
+actually it's in the webview sample
+
+media we're going to copy the reset.css
+
+and the vs code.css and all this does is
+
+it makes the panel
+
+look like vs code so if i create a new
+
+folder here called media
+
+and actually i want to show you what it
+
+looks like with and without it so
+
+reset.css
+
+and we'll paste it in and
+
+grab vs code.css as well
+
+all right so
+
+i'm going to show you what it looks like
+
+if we just create a panel and we
+
+don't do any scripts at all so i'm going
+
+to comment out the
+
+css one and i'm going to comment out
+
+this one as well
+
+so we don't need this part right here
+
+either so basically this entire stuff
+
+before the return statement we're just
+
+going to comment out and we're going to
+
+come back to it
+
+and do i want a nonce
+
+actually you can keep the nuts i guess
+
+because we're going to need that
+
+so get nuns this is just actually we're
+
+going to grab that as well
+
+it's actually inside of webview sample
+
+source at the bottom here
+
+get nuts and i like to stick that in
+
+another file because we're going to use
+
+this a couple times
+
+this just creates a unique id id
+
+basically that's what that's doing
+
+and i'm going to import i like to import
+
+by just hitting command and then period
+
+may do control period on windows and hit
+
+import
+
+you could also put your cursor at the
+
+end here and control space
+
+those are two options to auto import
+
+stuff all right so
+
+api base url we do not have yet i'm just
+
+going to remove this
+
+i guess just remove the default source
+
+for now
+
+so it just has image source here and we
+
+do not have these
+
+links yet i kind of want to just comment
+
+this out because we're gonna have it
+
+um you know what i'm just going to
+
+set it to an empty string there and then
+
+i'll just remember what i need to do and
+
+we can remove this we're not going to
+
+this is how you can actually inject
+
+variables into the web view
+
+we're going to do that a little bit we
+
+don't need it right now and we don't
+
+need this one either so it's just
+
+scripture okay all right so this is
+
+basically
+
+just an html document that's going to be
+
+our web view and
+
+in the body here why don't we just do an
+
+h1 that says hello world
+
+right and we'll save that
+
+and this looks good so we're going to go
+
+into our extension
+
+and maybe we're going to activate this
+
+panel just when we call hello world here
+
+instead of showing an informational
+
+message so i'm going to say hello world
+
+panel dot
+
+create or show
+
+and you'll notice here so by the way
+
+that's something i haven't really
+
+mentioned yet since we're using
+
+typescript if you're new to that
+
+if you're unsure about types you just
+
+hover over and it's going to tell you
+
+types what i mean by that
+
+is here i can see that this function
+
+here takes one parameter called
+
+extension yuri
+
+and the type of that is a vs code yuri
+
+all right so i know what i need to pass
+
+in now
+
+also extension yuri this is something
+
+that comes from the context
+
+so i didn't mention this yet but this is
+
+the activate function and this
+
+basically it's called when your
+
+extension first gets set up and this is
+
+basically where you initialize
+
+everything and so we just need to pass
+
+in context
+
+dot yuri and the extensionary we can
+
+pass that in
+
+all right and now let's come over here
+
+reload
+
+of course and now let's run
+
+the hello world and see what happens
+
+nice so it took a second to activate
+
+then it got it and this is what it looks
+
+like
+
+i'm actually surprised this is black i
+
+was expecting it to be like white let me
+
+display like an input field for you but
+
+notice how we have like a new window
+
+here that we created this is just a web
+
+view
+
+basically sitting inside vs code and
+
+this is a regular like
+
+tab right i can switch between the tabs
+
+and whatnot
+
+all right so that's awesome and what i
+
+want to do now is just go to my hello
+
+world panel
+
+and i can treat this just like html
+
+right so i can do whatever i want here
+
+do an input tag and uh so yep we're
+
+going to have to refresh every single
+
+time
+
+and then we're going to come here and
+
+we're going to type hello world
+
+so there's a little bit of an iteration
+
+cycle there but we're going to do
+
+something that makes that better in a
+
+second
+
+all right so notice how this is just an
+
+ugly white box and we got like
+
+an orange around it right so vs code has
+
+css
+
+just default that styles some things
+
+also for the button let me show you the
+
+button those are nice too
+
+so do a button tag in our panel here
+
+we'll reload it
+
+and redo hello world
+
+all right so buttons are ugly right now
+
+now if i come back up here
+
+do our reset style
+
+get this so i guess i'm doing like two
+
+pi
+
+parts here and i actually don't know why
+
+i didn't just mash this into a
+
+single variable like actually what i
+
+want to do here is just
+
+take this part and put it here
+
+that way i don't have so many just
+
+random variables floating around
+
+i think it makes just a little bit
+
+simpler in my opinion
+
+and i actually did that for the css yuri
+
+all right this
+
+this thing doesn't exist yet
+
+all right so all this is doing is
+
+telling vs code the path to your css
+
+file
+
+so you'll notice how it says the
+
+extension yuri this is basically your
+
+base path
+
+and then the media that's the name of
+
+our folder right here and this is the
+
+name of the file
+
+so this is basically just a url to these
+
+reset and the vs code files that we have
+
+there
+
+and then all we're going to tell it is
+
+to load those css files using a link
+
+and we just stick the styles reset here
+
+and then we can do two of them right so
+
+now i'm also going to get the
+
+styles main
+
+and come back over here reload
+
+and run hello world and now it should be
+
+a little bit prettier when this loads
+
+awesome so you notice how now it like
+
+feels more like vs code we got dark
+
+inputs we got cooler buttons
+
+you still need to do a little bit
+
+styling yourself but at least this is
+
+good defaults
+
+now we can also load some javascript in
+
+here so let me show you that
+
+so if we come back over here and we come
+
+to the section here you can see i was
+
+kind of like loading a script yuri from
+
+before
+
+i'm going to bring that back in here and
+
+it's doing the exact same thing right
+
+as our css files but instead it's
+
+pointing at a javascript file
+
+in this case i had like a compiled
+
+swiper.js we're going to get into some
+
+compiled javascript in a second but let
+
+me just show you with vanilla
+
+javascript so i'm going to just stick
+
+this in my media folder
+
+and i'm just going to call it main.js
+
+alright so i'm going to create a main
+
+dot js file
+
+and i actually can't write vanilla
+
+javascript to like save my life so i'm
+
+just going to come
+
+to the example of the cats
+
+in the webview sample and copy their
+
+main.js
+
+all right and we'll copy this paste it
+
+here
+
+and i don't need half of this stuff but
+
+i just wanted to copy their
+
+document.element id thing because
+
+i forgot how that worked
+
+all right this vs code thing allows us
+
+to kind of do some vs code things and
+
+communicate with the
+
+vs code extension itself we're going to
+
+get into that later um but right now we
+
+are going to just
+
+basically update the dom right so i
+
+don't know make my button
+
+i actually don't even know what i'm
+
+doing i think i can just say
+
+button.entertext
+
+is equal to hello from javascript let's
+
+try that
+
+see if that does anything and then my
+
+panel over here
+
+i need to load that so i'm going to grab
+
+this script
+
+paste at the bottom here i just copied
+
+the location that
+
+vs code originally put this and the
+
+source
+
+is going to be whatever i called it
+
+script yuri all right
+
+now remember every time that i edit this
+
+file
+
+a extension file i then have to come and
+
+reload
+
+but every time that i change a
+
+javascript file for example
+
+all i have to do is close and reopen the
+
+web view
+
+which we're going to see in a second
+
+here okay so hello world
+
+i see it dude did my javascript not get
+
+executed
+
+i it just shows it here maybe that's not
+
+how you do things
+
+but one thing i'll show you and this is
+
+how you can debug
+
+is if i open the panel and i say open
+
+webview developer tools you can see
+
+cannot set the property inner text of
+
+null okay so
+
+my javascript is running i just don't
+
+know how do you do
+
+vanilla javascript alright so that's
+
+that
+
+if i come over to my main.js maybe we
+
+just
+
+do a console log hello
+
+there from javascript save it
+
+so again i do not need to reload this
+
+panel
+
+right because i only changed the
+
+javascript file
+
+what i need to do is just close this
+
+and recall it and then it'll it'll be
+
+here and i then want to reopen my
+
+webview developer tools that's the other
+
+annoying thing
+
+this closes every time this panel closes
+
+but don't worry i've got something for
+
+you that's going to make your life way
+
+better in a second
+
+and you can see it says hello from
+
+javascript and also by the way
+
+we have element picker this is full
+
+developer tools here
+
+alright so i can click here and i can
+
+see all the things
+
+right and i can do stuff and i can see
+
+the urls it's using
+
+i can also see that vs code is giving us
+
+a ton
+
+of css variables right so this is what
+
+we can actually use
+
+for color scheming and whatnot and they
+
+also just give us some default styling a
+
+lot of stuff and that's pretty much all
+
+i used for my stuff
+
+now you could continue to write the
+
+entire webview for your extension
+
+in vanilla javascript but that's
+
+something i'm just not remotely
+
+interested in
+
+at all so instead what i like to use is
+
+a javascript framework
+
+and then basically just compile or
+
+transpile
+
+that javascript framework code into a
+
+javascript file that we then just in our
+
+hello world panel
+
+we import right so down here you know
+
+how we were loading a main.js file
+
+instead we were just going to basically
+
+load a compiled javascript file from our
+
+javascript framework
+
+now what i'm going to be using in this
+
+tutorial is felt that's what i've been
+
+using for my past
+
+extensions and i've been enjoying it and
+
+it's pretty lightweight so that's what
+
+we're going to be using as well
+
+but you can pretty much use any
+
+javascript framework as long as you get
+
+a js file at the end
+
+that you can use so we're going to be
+
+setting that up now
+
+and we're going to start by just going
+
+back over to the cinder because there's
+
+going to be a little bit of config we
+
+need so i'm going to go actually to
+
+is it the extension level yeah and i'm
+
+going to grab the rollup.config.js
+
+so rollup is a program kind of like
+
+webpack
+
+that is going to turn our svelte code
+
+into
+
+javascript code that is compiled
+
+all right so create a new file here
+
+rollup.config.js
+
+and i'm just going to paste that entire
+
+file in
+
+now most of this is just copy pasting
+
+exactly from
+
+svelte's getting started boilerplate
+
+with one exception which i'll talk about
+
+right here
+
+right so you notice how here i'm using
+
+fs this is just the node module for the
+
+file system
+
+and i'm reading a directory here and the
+
+directory that i'm reading
+
+is one called svelt stuff and inside of
+
+that pages
+
+now i'm going to choose a better name
+
+for this this is what i'm going to call
+
+webviews and i'm going to create that
+
+folder here
+
+webviews and then inside of webviews i'm
+
+going to have a folder called pages
+
+and then basically for each page i'm
+
+going so
+
+so in our extension we could have
+
+multiple web views right so we have a
+
+hello world panel
+
+but we might have another one that's
+
+like the authentication panel the login
+
+panel and etc
+
+so for each one of those we're going to
+
+create a new page basically that's going
+
+to be the root level of
+
+the application so here i'm going to
+
+create a
+
+hello world actually how do i want to
+
+capitalize this i guess just like this
+
+hello world.ts is what i'm sticking here
+
+all right and so it's now going to as i
+
+add more pages it's just going to
+
+automatically
+
+compile each one so i don't have to come
+
+here and touch stuff um so this
+
+i'm going to rename to webviews
+
+the input here
+
+uh everything else looks good it's going
+
+to create an out file
+
+um and compiled and stick that there and
+
+then everything else is just directly
+
+from oh
+
+this one right here svelte stuff this
+
+should be
+
+webviews all right rest of this looks
+
+good now we're gonna also need to
+
+install all these packages
+
+so npm install
+
+roll up
+
+resolve
+
+common js
+
+and this one too
+
+and this should be as a dev dependency
+
+so i'm going to put a
+
+capital d flag here at the beginning
+
+all right we'll let that run
+
+the only thing we need to grab is a ts
+
+config
+
+so in the salt stuff folder on the
+
+vasinder github
+
+we're going to go to ts config and i'm
+
+going to copy paste this
+
+so you'll notice we actually are going
+
+to have two ts configs
+
+we have one at the top level here
+
+this is for our extension and everything
+
+that we write in source extension and
+
+then we have a different ts config
+
+inside of web views so inside web views
+
+here i'm going to create a new file
+
+tsconfig.json
+
+the reason for that is felt needs a
+
+different
+
+basically typescript settings that we
+
+import from here than our extension does
+
+and so this allows us to use different
+
+ones
+
+all right so it's good we may actually
+
+need to install some more stuff in our
+
+package.json
+
+i feel like there's probably some stuff
+
+that is just in here
+
+so let's go to the package.json of the
+
+sender
+
+and i'm just going to search for any
+
+felt stuff i got okay yeah
+
+so i did not install this one
+
+so we're gonna grab the ts config salt
+
+and again this is going to be as dev
+
+dependencies
+
+i think i got all this and we need a
+
+sauce felt silt check
+
+and sell to pee process i don't think i
+
+got any of those
+
+spelt svelte check it's felt
+
+pre-processed preview process
+
+all right and we'll see if anything
+
+crashes but i think that should be
+
+everything
+
+i'm going to close some of these open
+
+tabs because i have a lot open
+
+and then i'm going to create a new
+
+folder here which i'm going to call
+
+components and this is where i'll
+
+basically stick the actual salt stuff
+
+so here i'll say hello world dot svelt
+
+and here i'm just gonna have a div that
+
+says actually let's do an h1
+
+h1 hello and of course
+
+in svelte i can have scripts
+
+and here we're gonna put the language to
+
+typescript
+
+and actually let's just render hello and
+
+then we'll
+
+i'll show you a little bit of svelte if
+
+you've never done self before don't
+
+worry i'm going to show you stuff along
+
+the way
+
+and then in our hello world we need to
+
+import this felt component that we
+
+created
+
+and i never remember the syntax i'm just
+
+going to copy paste it it's in my
+
+extension
+
+swelled stuff pages
+
+and let's go sidebar
+
+paste that in and so our components
+
+we're just going to rename this so this
+
+is
+
+hello world dots felt um also
+
+if you go to extensions i believe i have
+
+a swelt extension you're going to want
+
+to grab
+
+yeah i do so download this extension
+
+svelte for vs code
+
+um version 102.8 is what it's on for me
+
+and i get this one instead of the
+
+intellisense one the intellisense one
+
+has more stars and more downloads
+
+but i believe this is the newer one okay
+
+so now that we have this and you notice
+
+again we're just importing these felt
+
+file here this is where we're going to
+
+put all of our logic
+
+now we just need to tell roll up to
+
+compile it
+
+and i have that command in the
+
+package.json here
+
+and compile is just going to be roll up
+
+c and i actually want roll up c
+
+with the watch flag and you'll notice i
+
+actually am going to install
+
+concurrently
+
+as well so this just allows us to run
+
+two
+
+commands at once
+
+so npm i do concurrently
+
+because we now not only need to run
+
+webpack
+
+we also need to run roll up
+
+so i'm going to copy this
+
+and put it here and you'll notice i need
+
+to
+
+escape the quotations because we're
+
+wrapping the single
+
+quotations and this is just the watch
+
+script so concurrently
+
+this is the first command it's going to
+
+run so roll up
+
+compile with watch mode and then the
+
+second command it's going to run
+
+is this and so these are both watch
+
+commands that are just going to run
+
+concurrently
+
+so we're going to compile the webpack
+
+and compile with rollup
+
+so again rollup is compiling the svelt
+
+stuff and webpack is compiling our
+
+extension itself
+
+all right so let's just run
+
+and peter one watch
+
+roll up oh did i literally not install
+
+roll up
+
+all right we'll do npm i dash d roll up
+
+and we'll run watch again
+
+all right see what i did wrong
+
+and vs to do ts config looked like it
+
+was it was going to the wrong config i
+
+want it so in my
+
+rollup.config.js i'm pointing it towards
+
+webviews tsconfig.json yeah this looks
+
+right
+
+oh that's right so i need to exclude
+
+that file
+
+so okay this is the error that we're
+
+getting notice how it says
+
+file helloworld.ts is not under the root
+
+directory
+
+so this is a typescript error that's
+
+complaining about
+
+um and basically what it's saying is our
+
+ts config here on the outer level
+
+should ignore all of our svelte
+
+typescript code
+
+so we just need to come into our ts
+
+config here and exclude it
+
+and that's because we already have a
+
+different typescript config that we're
+
+using inside of webviews
+
+all right so let's try this again
+
+all right compilation this looks like
+
+it's working now
+
+and i'm just going to shut down and
+
+reopen this window
+
+actually i'm not reopening is it not
+
+going to
+
+do anything because we actually now need
+
+to point it so you now you see how
+
+there's like a new folder called
+
+out and then compiled you should see a
+
+hello world.js
+
+and this is basically your compiled
+
+javascript code from the svelte
+
+so now we're going to go into our panel
+
+hello world panel
+
+and instead of pointing at media main
+
+we're going to point at out
+
+and then hello world
+
+and now i'm going to press f5 and launch
+
+this
+
+all right so now let's run our hello
+
+world
+
+and now this hello world should be
+
+coming from from uh
+
+svelt um actually
+
+that's the other thing we need to do
+
+inside
+
+of yeah our panel at the bottom
+
+i had like this h1 and this input we can
+
+get rid of that stuff we don't need
+
+anymore
+
+because we're now going to do that all
+
+through salt and
+
+if i look at this okay yeah i'm just
+
+it's targeting the document body
+
+so this is where svelte's going to start
+
+doing its thing
+
+is on this body element here just making
+
+sure is right
+
+all right let's refresh and see if that
+
+does its thing
+
+and i'm not saying anything so
+
+i'm gonna do my webview developer tool
+
+console
+
+unauthorized oh i totally forgot about
+
+this okay episode by default
+
+it's going to restrict what stuff you
+
+can load inside of your web view
+
+just for security purposes and if we
+
+scroll up
+
+i believe it's somewhere up here
+
+yeah see how it says it's right here
+
+where it says create a webview panel
+
+local resource routes and
+
+we can do media out compiled
+
+wait i i should be allowing it i think
+
+what i don't have is maybe
+
+oh the content security policy so i
+
+don't i think it's the content security
+
+policy that i need to update so
+
+if you're doing this on your own and you
+
+get an error
+
+make sure that you come to this section
+
+here i already have mine set up
+
+but in the webview create webview panel
+
+and local resource routes you have to
+
+allow each one
+
+so i have it allowed out compiled that's
+
+where mine is but if you put a different
+
+name or different path to your
+
+javascript code you're going to need out
+
+of here
+
+so just keep a note of that and then
+
+down here we need to update the content
+
+security policy to allow it
+
+and it's going to be a script source
+
+so we're going to add it right here
+
+i actually don't know if script source
+
+is where i'm supposed to put it i
+
+actually don't remember where you're
+
+supposed to put it let's just go copy
+
+from here
+
+all right so source
+
+sidebar provider will work fine and if i
+
+come down at the bottom here
+
+so all right this is my content security
+
+policy right here the default is api i
+
+don't need that
+
+wait this should just work what am i
+
+missing
+
+all right i figured out i'm just bad so
+
+what i did is i hovered over this
+
+and i was looking at the path and if you
+
+notice at the end there it says
+
+out slash hello world.js but it doesn't
+
+say the word compiled
+
+that's because i just forgot to put the
+
+word compiled so i was just the huge
+
+noob
+
+so it's down here at the bottom i just
+
+literally put the wrong
+
+path to the javascript file so it should
+
+be out
+
+slash compiled alright so now we'll
+
+reload this
+
+and we'll open the webview tools
+
+actually we don't even need to
+
+what am i doing hello world first so
+
+that's the other thing i should mention
+
+so it looks like it did work
+
+notice how i don't have a webview up
+
+right you can't actually open webview
+
+tools unless you have a webview open
+
+so make sure you have this up first
+
+before you do that all right so this is
+
+hello and this is from
+
+svelt so that's amazing so now let me
+
+show you what our iteration is going to
+
+look like
+
+so i've just saved this felt file
+
+since we have roll up right and watch
+
+mode here it
+
+already like recompiled it and stuck it
+
+in the folder here
+
+so all we need to do is come over here
+
+and run refresh
+
+is it not okay reload so reload web
+
+views
+
+press this wait did that not work
+
+actually no that doesn't work what am i
+
+talking about i always just click and
+
+reopen
+
+now you say hello world there you go now
+
+it pops up
+
+i forgot so so i i tested this a while
+
+ago
+
+and i forgot the reload webview wasn't
+
+working for me but i'm going to show you
+
+a hot tip
+
+to make this better and you just have a
+
+hot key all right let's set up that
+
+custom command to make our lives way
+
+easier
+
+basically all it's going to do is close
+
+this panel for us
+
+and then reopen it so we don't have to
+
+do that every single time we make a
+
+change just just
+
+a quality of life improvement you know
+
+so i'm going to go into the package.json
+
+and add a new command here which i'm
+
+going to call
+
+just refresh webview
+
+and i guess refresh web views now we'll
+
+just call it refresh
+
+and then here
+
+call it refresh and again i'm not sure
+
+if i
+
+like mentioned this before but the thing
+
+you put here
+
+should match here the only difference is
+
+you put this colon command
+
+in front so it loads all right so it's
+
+going to be refresh
+
+and then inside of our extension
+
+copy this paste it
+
+and we're going to say refresh and then
+
+we're going to say hello world panel
+
+and we're going to kill our panel and
+
+then we're going to recreate it
+
+creator show
+
+and pass in our extensionary
+
+all right
+
+so i have to reload this so the command
+
+loads
+
+but now what i can do so let's say i
+
+have this panel up right
+
+and i make a change so i now make this
+
+hello world three i can just now come
+
+here and i can run my command
+
+refresh and this is on vs to do
+
+refresh and you notice how it reloads
+
+and now we have a three here right very
+
+handy very easy to work now we can go a
+
+step further
+
+because maybe i'd like it to also open
+
+up
+
+the dev tools right for me i don't have
+
+to come in here and open web dev tools
+
+every single time that's really annoying
+
+so how can i make it do that
+
+well if i open web dev tools
+
+so this is actually a command that we
+
+can execute
+
+and if i click that little cog at the
+
+end there
+
+it'll actually take you to the keyboard
+
+shortcut and more importantly the name
+
+of it if you right click on this
+
+you can actually copy the command id all
+
+right so just just uh
+
+recap what i did is this is the command
+
+i'm interested in
+
+right and i just typed open web dev
+
+tools to get access to it and i hit the
+
+cog
+
+took me here and now i'm copying the
+
+command id
+
+and now i can tell vs code to execute
+
+that command here
+
+so i can say hello world panel dot sorry
+
+not that
+
+vs code so whenever you want to interact
+
+with vs code usually you use this vs
+
+code thing up here that you import
+
+so this code it's going to be under
+
+commands
+
+dot execute command and then you can
+
+just paste in that string and it's going
+
+to execute this command
+
+now if you hover over this you'll see
+
+that it's thenable that's the other
+
+thing i don't think i mentioned yet both
+
+typescript
+
+this is the return of this this function
+
+so let's just recap this real quick
+
+hover so i'm hovering over this to
+
+actually see the tooltip
+
+except it's not working there we go all
+
+right so here you can see
+
+the start of the parentheses that means
+
+this is the
+
+parameter one this is the rest of the
+
+parameters so you can see it takes a
+
+bunch of them if if
+
+you want to and then you see the colon
+
+this is the return type
+
+so that's how you break down the types
+
+for typescript there
+
+all right so this is going to open dev
+
+tools now the only thing is
+
+devtools only works when this panel is
+
+open and this creator
+
+show thing is not like instant
+
+and you'll see what i mean so if i
+
+reload this i actually don't think
+
+if i do my refresh see how it doesn't
+
+actually show it
+
+so what i did my code is i just did a
+
+set timeout
+
+and so this only um executes after it
+
+waits 500 milliseconds
+
+so i'll come over here
+
+and refresh
+
+and this pops up and now you see dev
+
+tools now pops up
+
+so just adding a little bit of a buffer
+
+it works now i don't want to come here
+
+and press
+
+you know this command every time i make
+
+a bloody change because that's still
+
+annoying right
+
+so what i like to do as well is add a
+
+key bind to that
+
+so again i came here and i hit the cog
+
+from the command palette and so now that
+
+i'm here i can add a keybind all i have
+
+to do is click here
+
+and personally what i like to key bind
+
+this to is alt and then
+
+r and you can see i already have an
+
+existing uh command
+
+that's fine wait come on yeah that's
+
+what i want
+
+there we go and this just makes my life
+
+real easy
+
+alt r and we're good to go so now the
+
+life cycle or how we're going to work
+
+here is i'm going to say hello 4
+
+come over here alt r
+
+right add some more save the file
+
+alt4 changes and dev tools is up so
+
+that's going to be our workflow from
+
+here so get comfortable with that get a
+
+good keybind
+
+and then you're going to be able to
+
+iterate very quickly now creating full
+
+screen
+
+panels like we did with this hello one
+
+two three thing
+
+are great when you want to take over the
+
+entire screen
+
+but again the user can also split screen
+
+if they want to but a lot of times you
+
+just want to display a web view or just
+
+some custom content in the sidebar here
+
+so that's what we're going to focus on
+
+and do next in this tutorial is setting
+
+it up so we can display stuff here and
+
+have like a custom icon that we can
+
+click on
+
+so we're going to head on back to the
+
+sender on github and we're just going to
+
+copy a little bit of boilerplate again
+
+so at the extensions level we're going
+
+to start in the package.json
+
+and so we're going to be creating a new
+
+sidebar view
+
+and so we have to tell vs code that
+
+we're adding this
+
+so under contributes we're going to add
+
+a view container
+
+and a views so we're going to copy both
+
+of those
+
+and i'm going to go to the package.json
+
+and by the way i i don't didn't mention
+
+this
+
+if you just hit control command p this
+
+will bring up the
+
+palette and if you don't have a carrot
+
+so when you have the carrot you can do
+
+commands but if you get rid of the
+
+carrot these are all the files in your
+
+project
+
+and so i just typed package.json and hit
+
+enter and it takes me to that file so
+
+that's someone how i'm going to probably
+
+navigate a lot of times
+
+and so give that a try it's pretty handy
+
+if you don't use that already
+
+all right so i'm pasting that into my
+
+contributes here
+
+and so there's a few things we're going
+
+to swap out we can give this a custom
+
+name so i'm going to call this vs to do
+
+the title of this
+
+is going to be vs to do icon we're going
+
+to talk about it in a second but
+
+basically this can just be
+
+a custom svg and it can be whatever you
+
+want but we're going to come back to
+
+that
+
+the id here again i'm just going to pick
+
+something custom
+
+so vs to do and the name vs to do
+
+and vs to do here as well
+
+and then we just need to add an
+
+activation event i believe
+
+yep on view this
+
+and this is just so it initializes the
+
+view and the name
+
+here should match what we put here so
+
+copy
+
+paste all right so now we need to decide
+
+what we want the icon on the side to be
+
+so if you want to look kind of vs code
+
+like you may want to go to
+
+codicons all right so let's click this
+
+one
+
+so this has all the codecons for
+
+um vs code so these are all icons that
+
+they kind of use
+
+so i don't know if they have like a to
+
+do icon
+
+or maybe a list perfect so they have a
+
+checklist so maybe i'll use this
+
+checklist one
+
+so once i find the one that i want i
+
+just go to their github
+
+and i go to their source
+
+icons and i said i want a checklist
+
+i click on it and i just grab the svg
+
+here
+
+and i'm going to add this to the media
+
+folder
+
+and i'm going to call this checklist on
+
+svg and pop it in here
+
+um you can use any style svg but this
+
+will just blend in with the icons well
+
+since these are all coded cons as well
+
+all right so i'm going to go into my
+
+package.json just call this checklist
+
+svg and checklist svg so in both of
+
+these places icon here and icon here
+
+all right so after we have that we're
+
+going to go into our extension here
+
+extension.ts and we are going to
+
+initialize that view
+
+so we're going to grab that from oh we
+
+don't need codecons anymore
+
+so i'm going to go to extension source
+
+extension
+
+and the sender and we're going to copy
+
+this bit right here
+
+so lines 15 through 21 here and we're
+
+basically just creating a sidebar
+
+provider
+
+and then uh registering it here
+
+and i'm gonna paste it and i'm gonna get
+
+rid of this console.log i don't know why
+
+i didn't kill that before
+
+so we need to actually create our own
+
+sidebar provider here we just need to
+
+pass in the id
+
+so vs to do and the
+
+string here should match what you set in
+
+your package.json for the id
+
+all right and let's add the sidebar
+
+provider now
+
+all right so i'm gonna go to sidebar
+
+provider and copy the one i have from
+
+vasinder
+
+and we're gonna rip a few things out but
+
+this will give us a good base
+
+there's a little bit of boilerplate for
+
+creating this kind of like the other
+
+panel
+
+all right and we don't need anything but
+
+these two so get nuns and
+
+on the webview on receive message
+
+we don't need this all this stuff we
+
+can't remove for now
+
+i'm gonna keep like an on info one if i
+
+have that yeah
+
+i'm just gonna keep the on info and the
+
+on air those are nice ones to have
+
+and we're gonna talk more about
+
+receiving messages but basically all
+
+this
+
+does is it displays an information
+
+message or an error message if one comes
+
+from the web view
+
+and i'll show that a little bit later
+
+alright so here we have the same
+
+basically logic you'll notice how this
+
+looks very similar to the panel we're
+
+just
+
+creating we're again loading right css
+
+and javascript as well and uh actually
+
+did i write custom
+
+sidebar css oh you know what that's
+
+actually coming from svelte because felt
+
+can have css
+
+so i should show you guys that as well
+
+so we could have actually done this as
+
+well for the
+
+the side panel but we'll get into that
+
+so these
+
+let's group these together
+
+these two are basically our default css
+
+we're going to add to every webview that
+
+we create
+
+these two are specific to the webview so
+
+i'm going to just keep the name here
+
+i'm happy with this and i'm going to
+
+scroll down here we don't have an api
+
+based url yet
+
+we'll come back and add this later so
+
+i'm just going to i'm going to remove
+
+from default source
+
+all the way to this semicolon here
+
+and i can get rid of the script tag
+
+and now i'm happy with this i think this
+
+this looks good
+
+now i think i think we're just going to
+
+reload and just make sure that we see
+
+our icon on the left side
+
+it shouldn't actually run yet because we
+
+don't have the sidebar js and the
+
+sidebar css
+
+but i'm just going to reload the entire
+
+extension so again whenever i make a
+
+change
+
+to the view container of a center
+
+sidebar does not exist all views
+
+registered to it will be add to explore
+
+all right i i kept something with the
+
+word the sender in it
+
+oh it says it right here so this should
+
+be
+
+vs to do sidebar view
+
+is what i want this to be called
+
+and this is just in package.json that
+
+i'm making this change
+
+oh and i kept the sender here so this is
+
+my hello world panel i'll just change it
+
+to hello world i don't think that really
+
+matters
+
+does not register all of these russian
+
+verbal explorer
+
+i'm just going to reload it so actually
+
+i don't think it was a problem with that
+
+what is
+
+okay it works i actually have no idea
+
+why i was complaining about my previous
+
+name
+
+i feel like that should have worked all
+
+right but you can see it also has vs to
+
+do like a little tool tip
+
+and i can see my thing and if i click on
+
+it
+
+it looks like it crashes which makes
+
+sense because
+
+sidebar provider is not defined oh we
+
+didn't import it
+
+so back in mind i'm going to close this
+
+in my extension i actually didn't import
+
+this
+
+it's awkward no wonder it's crashing all
+
+right so command period by the way for
+
+to auto import that all right
+
+so now we can actually add signbar.js
+
+insidebar.css
+
+and we can start rendering some stuff
+
+there so all we're going to do is
+
+same thing so i'm in web views pages i'm
+
+going to create
+
+a sidebar dot ts and by the way uh
+
+capitalization matters here i'm going to
+
+just match it so i'm doing lowercase i
+
+know we did uppercase here but it's
+
+whatever
+
+i'm going to copy the hello world.ts i'm
+
+going to paste it in
+
+and i'm going to call this sidebar.spelt
+
+and create a sidebar dot svelt
+
+and we're just going to say hello i'm
+
+going to save that
+
+and please recompile dude
+
+oh i think i might have to just control
+
+c and run mp and run watch again
+
+to make sure it re-spits it out yes so
+
+again
+
+look in your out compiled you should
+
+have a sidebar.js file there now
+
+and there's not a css file there right
+
+now but if you add a style tag here
+
+and we'll just make the div color pink
+
+how about that
+
+all right css go
+
+did i break it oh there's not a plug-in
+
+that we need
+
+uh directly after number identify
+
+directly
+
+sidebar.css oh the webview broke i think
+
+i don't know what happened i'm going to
+
+refresh this
+
+do i need to have a script tag up here
+
+and it doesn't have it i don't think
+
+that's the problem
+
+i usually have a script tag up here and
+
+this is where we're going to do some
+
+spelt stuff as well
+
+i'm just going to control c and rebuild
+
+it i'm i'm assuming we're missing
+
+a plugin that we need okay so i figured
+
+out i got it all working now and
+
+sidebar.css is spitting out just fine
+
+so i was actually doing everything
+
+correctly uh we just have to downgrade
+
+our roll-up plug-ins felt and also i'm
+
+just matching my rolled version
+
+as well so these are the two versions
+
+that i'm using and they confirm work
+
+so if you don't get an error maybe just
+
+use the latest version but if you are
+
+getting an error try downgrading
+
+and these are the two versions that
+
+worked for me and it compiles just fine
+
+and now in my sidebar that's felt i
+
+changed it to red
+
+just to make sure that wasn't the
+
+problem but yeah it spits out a css file
+
+whenever we add styles here
+
+so awesome so now if i go back to my
+
+extension
+
+and i just reload it it should now
+
+actually load
+
+hello and it should be red um if you see
+
+that clock there that just means it's
+
+loading the extension
+
+takes a second for the webview to load
+
+nice
+
+so now i see it says hello and again you
+
+may want to set
+
+yourself up with a hotkey right if i
+
+make a change here
+
+i can close it and reopen it and then it
+
+reloads it here that's the quickest way
+
+if you just want to manually do it
+
+but what i like to do is go and update
+
+my little command here so you can either
+
+keep this
+
+if you're working on uh the panel and
+
+the side panel you can do both
+
+i'm gonna comment these out because i'm
+
+no longer working on the hello world
+
+panel
+
+so i'm just gonna remove that so on my
+
+refresh command what i wanted to do
+
+is basically close the sidebar and
+
+reopen the sidebar
+
+so if i look at this there's literally a
+
+command called close sidebar
+
+so i can click on the cog and i can
+
+right click and i can copy the command
+
+id
+
+and i can say await vs
+
+code.commands.executecommand and i can
+
+tell it to close the sidebar
+
+and i'm just going to make this function
+
+asynchronous
+
+and then i can tell it to open the
+
+sidebar
+
+and in this case bs to do i think it's
+
+actually just for us to do
+
+yep see how there's a view so here i put
+
+vs2 because that's why i named it
+
+whatever you named your extension you
+
+can search it here
+
+see how there's a view show via to do
+
+that's what i want so i'm gonna hit the
+
+cog
+
+copy that and this is what's gonna open
+
+the sidebar
+
+and we're gonna paste that in so close
+
+it and then reopen it
+
+so i'm just to reload this
+
+and we'll let that load and then when i
+
+push my hotkey
+
+again did i set it to alt 4 yeah i did
+
+okay cool so it closes reopens and opens
+
+step tools for me
+
+so let's make this blue for example
+
+and the watch command's going to
+
+recompile the css for me
+
+alt r and it's back and it's there so
+
+perfect we're basically
+
+all ready to just start developing on
+
+our sidebar with the webview here
+
+so i want to start out by starting with
+
+a basic to-do list example and just get
+
+you familiar with svelt
+
+so there's basically three parts to this
+
+html stuff that we put down here
+
+and then we're going to stick any kind
+
+of css styling
+
+between the style tags and any kind of
+
+like javascript
+
+logic we'll type script we're going to
+
+stick in the script tag up here
+
+so we're going to start by just creating
+
+an input field where we can
+
+add to-do's and i'm just going to create
+
+a variable up here to store the to-do's
+
+which is just going to be an array and
+
+i'm going to say
+
+const actually i'm going to say let so
+
+one thing i've noticed myself doing is
+
+just
+
+in uh svelte i tend to use let a lot in
+
+other languages or frameworks i can
+
+react i'll use cons kind of everywhere
+
+but with svelte you can just kind of
+
+mutate things
+
+like just real quick if i create a
+
+counter
+
+zero and let's say i want to display
+
+that counter
+
+same thing you can just do curly braces
+
+and then display the count
+
+and i want a button to increment
+
+on click you'll notice this is
+
+the syntax to do on click so it's on
+
+colon and then click
+
+i can just say count plus plus and what
+
+this is going to do is it's actually
+
+going to one increment the count but two
+
+cause the re-render and display this i
+
+don't know if people talk about
+
+re-render since felt but i think of it
+
+as a re-render
+
+so now if i come back over here alt-r
+
+wait bro where are you at did i
+
+stop my oh i stopped the compiler
+
+yarn you know i said i was using it's so
+
+hard for me
+
+not to use yarn i don't know why i
+
+promise to use mpm here
+
+i just kind of want to try it out you
+
+know
+
+all right so i made the color blue i'm
+
+gonna get rid of this
+
+for now all right so i'm gonna increment
+
+and you notice it just
+
+increases the number awesome so that's
+
+really handy so because of that
+
+i tend to use let because i tend to
+
+mutate things
+
+all right you can keep that example if
+
+you want i'm going to clean it out
+
+though
+
+i'm also going to have some text this is
+
+going to be the text
+
+for the input field so this is another
+
+really handy thing you can do in svelt
+
+is let's say i want the text value to
+
+equal it's in the input
+
+input field here i can just bind the
+
+value so
+
+bind value i put the text in here
+
+and so if i have text colon
+
+and i display the text whatever i type
+
+in this box is going to display
+
+right so hello and by the way i'm going
+
+to turn off my
+
+um open devtools for a second
+
+because i don't really need dev tools
+
+right now and it freaking unfocuses the
+
+window every single time it's kind of
+
+annoying me
+
+um and i'm just gonna have to hard
+
+reload for that to uh take effect
+
+and by the way i did that kind of
+
+quickly i just went to extension
+
+and uh commented out the set timeout
+
+part and the refresh command
+
+all right so yeah so every time i type
+
+you'll notice that these just match and
+
+that's because whatever i type in this
+
+input field now is
+
+binded to that variable here and then
+
+all i want to do like if i want to have
+
+a button here
+
+to reset the text
+
+i'm just going to on click
+
+and i set the text to an empty string
+
+okay so i'm typing i press reset and
+
+then you'll notice i changed that
+
+variable
+
+and now the input field is cleared so
+
+very nice
+
+all right so i'm now just going to make
+
+this a form
+
+and i'm going to read that stuff there a
+
+reason i'm making it form is just so you
+
+can easily hit
+
+enter and it will create a new to do and
+
+maybe what i'll do is i'll just create a
+
+pre tag for now
+
+and i'm gonna say json.stringify the
+
+to-do's
+
+and i'm gonna do null too
+
+um to do simplicity is type
+
+any what's wrong with that all right
+
+well i'm gonna create i guess my to-do
+
+type it's going to be an array it's
+
+going to have text which is a string
+
+and completed which is going to be a
+
+boolean
+
+all right so if you're new to typescript
+
+this is how you can declare your type
+
+so you just put a colon and the type and
+
+here i specified what type of type it is
+
+so it's an array
+
+and then i need to tell it what type of
+
+array and to do that you just put
+
+brackets
+
+and then you say what is inside of your
+
+array so i said there's an object
+
+inside my array with two keys text which
+
+is a string and completed which is a
+
+boolean
+
+all right so i'm just stringifying the
+
+to-do's and this just makes it look
+
+pretty down here we can see just a raw
+
+dump of the to-do's while we're doing
+
+this and then we'll build out the ui in
+
+a second
+
+all right so we can say on submit and uh
+
+we can get the event handler and i
+
+believe i can just call like prevent
+
+default here
+
+um but there's also like this this
+
+pipe syntax we can use and we can say
+
+prevent um
+
+default or something here i i'm not
+
+getting any
+
+auto completion so i actually don't know
+
+what the syntax for it is
+
+i don't know if you just uh put this
+
+let's see
+
+prevent default svelte
+
+event modifiers yep this is the exact
+
+thing i was going to show you
+
+show me you can just put it here
+
+which one is it stop propagation prevent
+
+default okay these are
+
+the list of all the modifiers that we
+
+can add so prevent defaults right
+
+um basically i believe these two are
+
+just equivalent so i could call
+
+e dot prevent default or i could just
+
+use this pipe operator and svelte
+
+all right so this is when our form is
+
+submitted the person just is hitting
+
+enter in the input
+
+and what i'm going to do is i'm first
+
+going to add an item to our to do's
+
+now normally i would just push on to the
+
+array
+
+button svelte it doesn't know that we
+
+mutated the to-do's array if we just
+
+push
+
+so what i like to do instead is just
+
+reassign every time we reassign like
+
+this
+
+svelte knows that we made an update so
+
+i'm going to say
+
+dot to do's by the way this is super
+
+annoying
+
+you see what i did there it said dot dot
+
+and then it takes the auto completion
+
+yeah you're just gonna have to live with
+
+that super annoying or maybe someone
+
+knows a fix
+
+let me know in the youtube comments if
+
+you do because uh that's absolutely
+
+killing me
+
+all right by the way to get around that
+
+i hit escape
+
+oh my gosh i messed it up so dot escape
+
+dot and because of environment really
+
+messes things up
+
+all right so i'm going to keep all the
+
+to do's and actually why don't we put
+
+our new to do at the beginning here so
+
+it's going to be a new object
+
+where the text is equal to whatever text
+
+is currently in the input field
+
+and then i'm going to say completed is
+
+false
+
+and then i want to clear the input field
+
+so i'm going to say
+
+text is an empty string after this right
+
+so
+
+come over here i'm gonna say one
+
+two three right so i just typed in input
+
+field and hit enter
+
+and you'll notice we just get a nice raw
+
+dump of the data here so you can see we
+
+are adding items to list and it looks
+
+nice
+
+so that's good so the next thing is just
+
+to
+
+render those as literal items so uh
+
+i guess make a ul tag and we'll put some
+
+lis so how do we loop and display
+
+information uh we don't need hello world
+
+to getting rid of that
+
+so enspelts they have these kind of
+
+hashtag things so we're gonna do a
+
+hashtag each
+
+and i believe so by the way how i did
+
+that is it was an autocompletion thing
+
+so
+
+if you go down to ha if you do hashtag
+
+with brackets around and then
+
+i push ctrl space just to trigger this
+
+and then the one with each is the one
+
+you want to press
+
+all right so we're going to say each to
+
+do's as
+
+to do so this is the name of the array
+
+that you want to iterate through
+
+and then this is this is like a for each
+
+loop basically
+
+and then here's the name of the the
+
+variable that you want to
+
+use in the for each loop so i'm gonna
+
+say li here
+
+um and we're gonna display it to do now
+
+you can also put a key
+
+man i think you just put key like in
+
+parentheses like that
+
+and maybe i'll just set the key to to
+
+do.text
+
+and that's going to be the text maybe we
+
+should be
+
+using unique ids i'm not going to worry
+
+about unique ids for this for now
+
+i'm just going to set the text so you
+
+type some unique text please
+
+all right so the li we have our list
+
+item there
+
+so one two three
+
+oh awkward so i didn't actually say
+
+to do dot text i just said to do and i
+
+believe you can also destructure there
+
+if you want to
+
+i'm not gonna try it though i'm just
+
+gonna say to do.txt
+
+all right nice all right so now we have
+
+some items great
+
+so next i want to be able to like click
+
+on these items and cross them out
+
+so i'm gonna add it on and click
+
+and how are we going to keep track of
+
+what's i guess we'll do it
+
+so actually um i think i can just do
+
+this i think i can just say to do dot
+
+completed is equal to not to do dot
+
+completed
+
+i don't know if this actually works but
+
+we're about to find out
+
+you notice how i didn't have to like
+
+look up the index and the array of the
+
+to do's i can just literally mutate this
+
+to do value
+
+i should probably wait and see if this
+
+works before i tell you how cool this is
+
+i really like doing things like this i
+
+think i did this a while ago and it
+
+worked so we're going to try it
+
+but basically this is just an element in
+
+the array and i want to change it so i
+
+do
+
+i just i just change it right here it's
+
+really nice convenient update
+
+all right so that's on the on click the
+
+only thing is nothing changes when we
+
+flip this so let's add a class
+
+so this is going to be like cross we'll
+
+call it complete
+
+so in css you got to put dot here if you
+
+want to target a class
+
+and uh it's called line style i believe
+
+lion style
+
+line style that exists right i thought i
+
+saw something
+
+style list style
+
+text style
+
+what is it called
+
+text decoration style probably
+
+i i forget line through
+
+css text decoration that's what it's
+
+called
+
+all right so it's tech decoration and
+
+we're going to say line through
+
+all right so now we just need to add the
+
+css class whenever completed is true
+
+so we could do like some kind of
+
+conditional
+
+but there's also a special felt syntax
+
+we can use
+
+so just to show you the basic example i
+
+could say to do dot completed
+
+and then we could say complete
+
+or we could have an empty string and by
+
+the way
+
+in svelte you just say class no class
+
+name
+
+or what i could do is i could put a
+
+colon here and put the name
+
+of my css class which is just
+
+complete in this case right and then i
+
+can put the
+
+variable here so when this is true this
+
+class will be applied and when it's
+
+false it will not
+
+be there so this is just like a short
+
+syntax for it
+
+all right so if i click this
+
+yep now we got a line through it now you
+
+we can appreciate how nice that syntax
+
+is
+
+i just mutated the to-do that i wanted
+
+to change there you are
+
+you have items that you can cross out
+
+all right i think that is a pretty good
+
+intro and just felt over some of the
+
+basics you got a little gist of how it
+
+works we're now going to layer some more
+
+complexity on top of this
+
+so a common thing that you may want to
+
+do is have your web view which is
+
+written in svelte
+
+communicate with your extension which
+
+can access
+
+all the vs code apis so for example i
+
+might want to show like a little pop-up
+
+or do any interaction with the editor
+
+that the user has up
+
+so how can we do that well we can
+
+actually send messages
+
+through svelt to the extension and
+
+that's what we're going to set up now
+
+so if you go over to the example that
+
+they have for the webview sample that we
+
+had at the very beginning
+
+we're going to copy a little bit of a
+
+code from that and really it's not that
+
+much if you just want to type it out
+
+but there's this special function we can
+
+call called acquire vs code api
+
+this is something that vs code gives us
+
+access to in web views
+
+and this gives us access to a vs code
+
+object which can give us
+
+different basically apis that we can use
+
+and the one we're going to be using
+
+is the post message method which just
+
+lets us send a message back to the
+
+extension
+
+all right so what i'm going to do is i'm
+
+actually going to go to our sidebar
+
+provider
+
+and at the very bottom here i'm just
+
+going to add a new script
+
+tag do people put script tags and heads
+
+i actually don't even remember
+
+i'm gonna just stick mine here i've i've
+
+haven't like manually written the script
+
+tag in forever
+
+all right so basically we're just
+
+sticking this this line of code in a
+
+script tag
+
+a lot of nuns to it
+
+nuns and i don't think we need anything
+
+else
+
+now you can call it just vs code if you
+
+want to but i like to preface
+
+prefix it with tsps code just so i know
+
+that it's different
+
+because uh this vs code object does not
+
+have
+
+everything that this vs code object has
+
+right
+
+that we're using inside our extension
+
+they're two different things
+
+so i like to just prefix it with the ts
+
+all right so now i can actually access
+
+this ts
+
+vs code object in my cell code so in my
+
+sidebar here
+
+maybe at the bottom i want to add a
+
+button
+
+so i could come to their example and i
+
+could copy their little post message
+
+right
+
+and i was about to wait it i don't need
+
+to i'm just gonna put ts in front
+
+um so the command this is so this is
+
+what you actually pass in this post
+
+message is whatever you want
+
+this just happens to be like a standard
+
+practice is to put a command like what
+
+you're doing
+
+so the ones that i used if you go to the
+
+sidebar provider
+
+two ones that i use is on info and on
+
+air
+
+so on info what i'll do is i'll take
+
+the value that's passed in assuming they
+
+pass in a value and i will show an
+
+informational message
+
+or if it's an error i'll show an error
+
+message right
+
+okay so on here i would say on info
+
+and then value this would be the message
+
+for my
+
+think so info message
+
+and maybe i'm going to copy this button
+
+and have an error message so you can see
+
+what both look like
+
+um click me for error
+
+all right so this is going to be the on
+
+air command now you'll notice that
+
+we're actually getting like a red
+
+squiggly it says cannot find name ts
+
+vs code and that's because this is like
+
+a global
+
+variable that we kind of just injected
+
+into that right if we go into our
+
+sidebar prior we just randomly stuck it
+
+in a script tag here
+
+so we can't access it here but
+
+typescript doesn't know we can access it
+
+here
+
+so the let typescript know we're just
+
+going to create a new file here called
+
+globals.d.t.s
+
+so the name of this file doesn't really
+
+matter i just call it globals
+
+and then the dot dot ts is an extension
+
+i think the d stands for like
+
+declarations or something
+
+and so in files like this i will say
+
+declare
+
+module or actually it's i think it's
+
+like declare
+
+global or something like that
+
+and maybe i actually extend it i forget
+
+the syntax let me see what i used
+
+in the sender and so this is going to be
+
+in my extensions
+
+svelte stuff shared
+
+globals
+
+all right so no i just declared it
+
+global so i believe global is a special
+
+keyword
+
+i didn't know if i had to like extend it
+
+or something you can see here i actually
+
+have my
+
+const uh
+
+tsvs code and actually what i'm going to
+
+do is actually make this an object
+
+because i can actually declare this
+
+a better type than any and what did i
+
+call this okay it's called postmessage
+
+so inside of here i can say postmessage
+
+and this is going to be a function that
+
+is void
+
+and it's going to have a command which
+
+is a string and a value which is
+
+anything
+
+so now that we've created this global
+
+type here
+
+typescript should now be happy with us
+
+it's not happy with us
+
+i'm just going to hit command shift p
+
+and restart the typescript
+
+actually i guess it would be restarting
+
+the salt language server so let me try
+
+that
+
+and see if it and now likes it okay
+
+doesn't so this happened to me before
+
+as well and surprisingly enough i
+
+believe it was this import
+
+that that made typescript recognize
+
+things
+
+so i'm just going to stick that up
+
+you'll notice we're not actually using
+
+this anywhere
+
+but as soon as i put that import in it
+
+just works here
+
+uh by the way it's going to complain
+
+about it's not defined this is just a
+
+warning and i just ignore this
+
+there might be a way to disable this
+
+globally but i don't know what it is and
+
+i didn't bother to look it up so i'm
+
+just going to keep it like that
+
+but yeah notice as this import we're not
+
+using i'm not sure exactly why it works
+
+i assume i guess when we import maybe it
+
+knows that this file exists and didn't
+
+know this file exists before
+
+and maybe we could like include it in
+
+our ts config and it would work
+
+but whatever the import works so we'll
+
+just keep it all right so let's test
+
+this out now
+
+alright so if i say click me
+
+and click for error nothing's happening
+
+oh i'll tell you why nothing well
+
+actually no oh yes i'll tell you why
+
+nothing's happening um
+
+so remember so by the way i do this to
+
+myself all the time
+
+so remember how we just edited sidebar
+
+provider.ts right
+
+we added this so that means we have to
+
+do a full reload
+
+not a webview reload i always forget
+
+that
+
+basically if your code's not working you
+
+should probably just do full reload
+
+because you probably just forgot to do
+
+that
+
+all right so we press click me all right
+
+now we actually have problems
+
+let's open up our webview
+
+am i just being a noob
+
+so let's go to my sidebar provider let's
+
+see if we're getting a message
+
+oh wait okay so i call it data.type
+
+so that's what's going wrong probably
+
+so commands here is from theirs i'm
+
+going to rename this to type
+
+all right so my i just need to make sure
+
+that i was using right convention so i
+
+used a slightly different one
+
+and by the way a command click
+
+can actually take you where the
+
+definition of this is you can also right
+
+click and go to definition so that's why
+
+i just click to go here
+
+and i'm just going to rename the type or
+
+re-declare it or just change
+
+it because we didn't we're not using
+
+command all right so i'm going to reload
+
+this again
+
+and the this is can just do a webview
+
+reload i believe
+
+yep all right so we got an info message
+
+here can click for an error
+
+and there you go right
+
+so we can pass whatever information that
+
+we need to to the
+
+this part but this on did receive
+
+message is the
+
+the part that we can actually listen for
+
+these so here we can do any vs code
+
+commands that we need to do
+
+right there's a bunch of them and so
+
+this is how you would interact
+
+from the webview part so if the webview
+
+needs to tell the extension to do
+
+something
+
+that was how you do it now you may also
+
+want to do the inverse where you want to
+
+send information from your extension
+
+to your web view one use case that i've
+
+used for this before
+
+is let's say like i'm in my editor and
+
+maybe what i want to do is i want to
+
+copy
+
+you know a string or something in my
+
+code and i want to take that and stick
+
+it as a to-do
+
+like maybe in my code i wrote it to do
+
+you know do stuff
+
+and then i want to come here copy this
+
+and stick it here now obviously i could
+
+just copy paste this
+
+but there may for some reason be that
+
+you want to create something that sends
+
+information from here to here how do we
+
+do that well step number one
+
+is i guess setting up our command to do
+
+this
+
+so i'm going to close some of these tabs
+
+because we kind of have a lot in here so
+
+i'm going to create a new
+
+command in our package.json
+
+and i'm going to call this add to do
+
+and add to do from selection is actually
+
+how i'm going to do it so it's going to
+
+get the to-do from whatever
+
+i have highlighted here
+
+and then we just need to come up to our
+
+activation events and add this command
+
+add to do and then in our extension
+
+we need to initialize this new command
+
+so it's going to be add to do
+
+and just to verify we have this all
+
+hooked up i'm just going to console.log
+
+hello
+
+so i hit ctrl tilde and i'm going to go
+
+to the debug console and i should see
+
+hello here
+
+so i'm going to reload
+
+and this is a full reload because we
+
+changed the extension and now i'm going
+
+to say add to do
+
+from selection and it just says hello
+
+down here all right so that all wired up
+
+correctly
+
+um so the next thing is i want to get
+
+the selection
+
+of here so if i type
+
+vscode.window.activetext editor
+
+this is a item which can possibly be
+
+undefined if i hover over this i can see
+
+that
+
+so you usually want to do a check you
+
+know
+
+so
+
+i might destructure this
+
+and not color theme active text editor
+
+so if they don't have an active text
+
+editor maybe we just
+
+tell them a message and we return
+
+all right so if i come over here and i
+
+reload
+
+and i close my index file here and i try
+
+running this
+
+add to do from a selection it's going to
+
+say no active text editor
+
+right but if i close that and open this
+
+this is considered an active text editor
+
+and so it is fine now this has a ton of
+
+useful information on it
+
+if you click in you can see kind of
+
+information about the document including
+
+the current selection if i hover over
+
+this you'll notice this is really just
+
+a array or index so it tells you like
+
+from 0 to 7 or whatever
+
+so what we're going to do is we're going
+
+to say active text editor
+
+dot document and then here we can pass
+
+in a range
+
+or a selection and if you don't it just
+
+can give you the entire text of the
+
+document
+
+but i just want the selection
+
+and can selection be null nope looks
+
+like it's always going to have a value
+
+um and i we could have i was thinking
+
+about making a check here if the text is
+
+empty but i'm not even going to worry
+
+about that
+
+what i'll do is i'll just log the text
+
+to the window
+
+so i'm going to say text colon and then
+
+display the text
+
+right so i'm going to reload
+
+and we're going to hover
+
+and press it and we'll attack it
+
+actually didn't get my text
+
+i wonder if it like got rid of my
+
+selection as i was doing it all right so
+
+let me select again
+
+command shift p add to do from selection
+
+okay good
+
+i just kind of lost my selection i think
+
+it's because i was using vim and it
+
+messed up
+
+but you can see here's the text i got
+
+from the selection
+
+so coolio the next step would be to
+
+actually send this text
+
+to our web view right so now that we
+
+have something that we want to send to
+
+our webview let's send it
+
+so our sidebar provider up here
+
+sidebar provider and it's going to be
+
+view dot webview dot
+
+post message all right so this is a
+
+function that we can call to send a
+
+message
+
+and i actually can't remember if this
+
+has to be a string or not this must be a
+
+string or
+
+other json or other json serializable
+
+object all right let's send an object
+
+it's going to serialize it for us i
+
+think
+
+all right so the type of this
+
+is going to be a new to do and the
+
+value is going to be the text
+
+so now the only thing left to do is on
+
+the
+
+side in our web view we need to listen
+
+for the messages that this is going to
+
+send
+
+so that's going to be in our
+
+sidebar.svelt
+
+we don't need these buttons here but i'm
+
+going to leave them for now
+
+and so in our script tag up here i'm
+
+going to
+
+call the on mount function so this is a
+
+special function that's
+
+felt gives us you'll notice it auto
+
+imported from svelte as i was typing
+
+that and i hit enter
+
+on mount there and so this function gets
+
+called when the component first gets
+
+mounted so
+
+this is a good place to put listeners
+
+and that sort of thing
+
+so if i go back to the webview example i
+
+can see that there's a window add event
+
+listener
+
+at the bottom so i'm going to copy this
+
+bit and again this is from the vs code
+
+extension samples webview sample so
+
+you're probably going to keep this up
+
+we're going to have to copy a few things
+
+from here
+
+well actually not where this is all we
+
+need for this but maybe in the future
+
+all right so event.data we have a
+
+message.command so in this case
+
+ours is going to be the type
+
+and it's going to be add to do
+
+and then we're just going to say to do's
+
+is equal to
+
+i'm going to add this to do so text is
+
+equal to
+
+message.value right because that's what
+
+i called it here
+
+value yep and completed is going to be
+
+false
+
+and i'm going to say dot to do's
+
+and i'm just gonna console.log the
+
+message to make sure it's the shape
+
+that i think it is and i put curly
+
+braces around this just so i could see
+
+that messages in the log and i think
+
+this looks pretty good let's try it out
+
+so i'm just going to do a full reload
+
+because i can't remember if i change the
+
+extension
+
+i'm going to open my sidebar i'm going
+
+to
+
+select some text
+
+and i'm going to add to do from
+
+selection
+
+um it did not work so why don't i
+
+toggle
+
+developer tools see the object
+
+all right so message it says new to do
+
+value wait this actually looks right
+
+it got the data it just didn't add it to
+
+do
+
+so i said to do's is equal to to do
+
+message
+
+dot value oh you know what i said add to
+
+do and i said new to do here
+
+i wreck myself every time with this all
+
+right i'm gonna get rid of that i think
+
+we're good with that
+
+and i think this will work now
+
+highlight and
+
+add to do from selection and nice i can
+
+see my tutor item here
+
+i can cross it off it's just like a
+
+regular to-do item now
+
+but there you go that is how you can
+
+actually send info from here
+
+or really just your extension to the web
+
+view and you can send stuff back and
+
+forth if you need to send
+
+a data there's one last thing i wanted
+
+to do here though
+
+is uh it's kind of annoying to like you
+
+know highlight
+
+and then go and run a command right so
+
+it would be nice there's just a button
+
+down here and well we can add a button
+
+down there
+
+and the way we do this is in our
+
+extension here
+
+um i guess we'll just add at the top i'm
+
+gonna say vs code
+
+dot ooh i think it's called window
+
+oh yeah it is it's create status bar
+
+item that's what it is
+
+and there's like a status bar alignment
+
+we're going to say on the right side
+
+so here we can say whether we want our
+
+button to be on the left or the right
+
+side i'm going to put mine on the right
+
+side
+
+and here we can set the text for the
+
+item so here i'm going to say
+
+uh add to do
+
+you can also add like a little icons
+
+let me show you what i'm using in the
+
+sender
+
+so i think i call it like status if i go
+
+to the file snippet status
+
+all right so you notice how you i did a
+
+dollar sign and then i put
+
+parentheses and then a name
+
+stick that here it'll actually add an
+
+icon if you want like a little icon
+
+in your bottom bar and how i knew what
+
+text to put here
+
+is this is just from codacon's
+
+so the vs code codecons and if you just
+
+go to their page
+
+you can pick whichever name you want so
+
+let's do a beaker because why not
+
+um and then what is the other item i
+
+think you just have to say whether your
+
+your snippet
+
+is uh shown as well i have to do dot
+
+show
+
+and the command as well so this is uh vs
+
+to do dot add to do
+
+did i prefix it with anything nope it's
+
+just like that
+
+um so what's going to happen is when i
+
+press the button down there it's going
+
+to execute this command
+
+and again you can choose whatever
+
+command you want to i'm just doing my ad
+
+to do here
+
+all right so let's reload this and see
+
+if we see a new item
+
+we'll give it a second it's going to
+
+load the extension
+
+and you can see my little beaker and it
+
+says add to do in the bottom right
+
+corner here
+
+all right so now i can select an item
+
+and i can just press this button
+
+and that's pretty nice right it executed
+
+the command
+
+and again i could wire that up to our
+
+hello world panel like i could click
+
+this and it opens a panel
+
+can do whatever we want to do but there
+
+you go that's how you can run commands
+
+from a button and send messages
+
+now everything we've done so far has
+
+been local to vs code so if i were to
+
+install this extension right now
+
+all the data would live basically on
+
+that person's computer
+
+but sometimes you want to interact with
+
+an api store stuff and database
+
+and be able to share with other users so
+
+that's what i'm going to show you next
+
+and we're going to do a little bit of
+
+back-end development set up a little api
+
+that we can interact with with our vs
+
+code extension and also show you how to
+
+do
+
+authentication let's say github so what
+
+i'm going to do is i'm going to come
+
+back to our project over here
+
+and i'm going to create a new folder
+
+where i'm going to put the code for this
+
+so i'm going to make a new directory
+
+here which i'm going to call vs to do
+
+api then what i'm going to do is instead
+
+of opening this up in a new vs code
+
+window i'm going to go file
+
+add folder to the workspace and i'm
+
+going to add vs to do api
+
+and the reason for that is i now just
+
+have these two projects open at once
+
+it just makes it really easy for me to
+
+switch back and forth so i'm going to
+
+close this
+
+and we're going to focus on setting up
+
+the api now
+
+all right so i'm a cd into the vs to do
+
+api
+
+and the first thing that i'm going to do
+
+while i'm in here is just run
+
+npm init with the dash y flag to say yes
+
+to everything
+
+and then let's install some things so
+
+first thing we're going to install is
+
+express
+
+we're using express server and you know
+
+already we're going to be using
+
+typescript so let's go ahead and install
+
+some dev dependencies
+
+typescript we're also going to install
+
+the types for node that's at types
+
+node let's also get node daemon while
+
+we're here
+
+and that's going to allow us to
+
+basically just restart our server as we
+
+are coding
+
+and what else do i want hyperscript oh
+
+yeah
+
+so i need a ts config so for typescript
+
+there's a configuration file
+
+to get that i'm going to use a utility
+
+that i made called
+
+ts config dot json so all you need to do
+
+is run mpx in front of that and it'll
+
+give you this prompt
+
+i'm going to press node and it'll stick
+
+a ts configure
+
+and in package.json i'm going to add two
+
+commands
+
+watch
+
+oh you know we didn't install the types
+
+for express2 so
+
+express npm i
+
+d at type slash express so if you've
+
+never worked with typescript before
+
+sometimes libraries are written in
+
+javascript and we want to use those
+
+libraries so for example express is
+
+written in javascript
+
+but we want typescript types and so to
+
+install those so we know like
+
+if something is string or is it an
+
+integer we can install a separate
+
+package
+
+here that gives us that info so that's
+
+why we're doing this
+
+all right so oh you know what i can't
+
+actually it's going to tell me that
+
+so if i save this here it's going to
+
+tell me this you know so i'm going to
+
+close out
+
+don't save the reason why i got that is
+
+because i
+
+saved i didn't save the file and i made
+
+changes to it and i did an npm install
+
+and it added this
+
+all right so the watch command is going
+
+to just run the typescript compiler with
+
+the watch flag
+
+and then the dev command is just going
+
+to run node daemon
+
+on dist slash index.js
+
+so i'm going to create a new file source
+
+index.ts
+
+and we're not going to worry about
+
+eslint for this
+
+so import express from express
+
+and we're going to say app is equal to
+
+express and we're going to be doing some
+
+async stuff so we might as well just
+
+start doing this right away
+
+and we'll make this asynchronous
+
+so this might look a little funny but
+
+what i did here is i made a anonymous
+
+function
+
+that's what this is here and i made that
+
+anonymous function call itself
+
+and you'll notice the anonymous function
+
+here is just uh
+
+written in parentheses now the reason i
+
+did that is because i can use the async
+
+keyword and i can do
+
+a weight in here and you may want to
+
+just rewrite this
+
+sometimes i do this if i'm looking to be
+
+really you know clear
+
+all right so you can use this if you
+
+just want to be super clear you made a
+
+main function and then you have stuff
+
+inside of it
+
+you can use the other one if you just
+
+want to look cool all right so i did
+
+app.listen here
+
+and i'm going to put this on port 3002
+
+i think because i think i have something
+
+listing on 2001.
+
+all right so i'm going to just say
+
+console.log
+
+listening on 3002.
+
+and i'm going to say app.git and i'm
+
+just going to do
+
+slash and this is just going to be a
+
+hello world example to get working
+
+and we're going to say res.send hello
+
+so um if you've never used express
+
+before it's just a way to create a
+
+server so we just set up a little api or
+
+a server here that
+
+starts on port 3002 and if you go to the
+
+url
+
+locals 3002 slash and then nothing else
+
+it's going to send back some text in
+
+this case just a string hello
+
+all right so we are going to say yarn
+
+watch
+
+to compile this and this should create a
+
+dist folder
+
+let's go ahead and also create a dot get
+
+ignore
+
+and say dist uh so when we compile the
+
+typescript
+
+to javascript you don't actually need to
+
+put that into source control
+
+all right so rack is declared but its
+
+value
+
+is never read all right this thing right
+
+here
+
+so we're not using rec so you can just
+
+put an underscore or underscore rec and
+
+then it'll be happy
+
+and vs2 api
+
+so i just open a new uh window that way
+
+i can run yarndev as well
+
+so i have that and
+
+i don't think we need this anymore we're
+
+gonna go to locos 3002
+
+slash and should say hello in your
+
+browser
+
+that means server started up it worked
+
+you're able to see it
+
+and uh the initial setup is good okay so
+
+i renamed my folders a little bit so if
+
+my sidebar looks a little bit different
+
+that's why
+
+i just have api and extension reason i'm
+
+doing that is i wanted to make them
+
+under like the same folder that way i
+
+could have a git repository that
+
+encompasses both
+
+but that's just a heads up you don't
+
+have to follow this you can just keep
+
+what you have i just want to let you
+
+know if it looks a little bit different
+
+on the side
+
+so the next thing i want to set up is to
+
+talk to a database
+
+we're going to be connecting to
+
+postgresql because that's my favorite
+
+database and it's a great database to
+
+use
+
+so if you have not already go ahead and
+
+install postgresql on your computer go
+
+to google figure it out and also
+
+create a database so i'm going to create
+
+mine right here
+
+i'm going to say create db and i'm going
+
+to call mine vs to do
+
+so do those two steps make sure poster
+
+sql is running on your computer and
+
+you've created db
+
+and then give it a name and then we're
+
+going to go from here so i'm going to cd
+
+into my api
+
+and we're going to install typeform this
+
+is going to allow us to make
+
+basically calls to our database
+
+we're going to be using pose aggress so
+
+we have to install the pg
+
+package and reflect metadata
+
+reflect metadata is something that
+
+typeform needs because it uses
+
+decorators
+
+and if i go into my ts config let me
+
+just make sure i think i have decorators
+
+on
+
+yeah so you need to make sure you have
+
+emit decorator metadata to true
+
+experimental decorator to true as well
+
+in your ts config
+
+and up here i'm going to import from
+
+typeform
+
+and also you may need to make sure to
+
+import from reflect metadata at the top
+
+all right so i'm going to say create
+
+connection now you're going to see why
+
+we put this
+
+in an async function because i want to
+
+await the create connection
+
+all right so the type of this i'm using
+
+postgres sql and also feel free to like
+
+swap this out with a different database
+
+we're not really going to be doing a lot
+
+of database things in this but i wanted
+
+to make this
+
+real so we are actually going to connect
+
+to one
+
+so we have that a few settings i'm going
+
+to set
+
+logging to true and what i'm actually
+
+going to do is create a constants folder
+
+and i like to just create a variable
+
+called prod and this will tell me if um
+
+we're currently in pratt or not so to to
+
+tell i'm going to
+
+look at an environment variable called
+
+node inf if that is set to production i
+
+know we're in production
+
+if you've never seen this before this is
+
+kind of a standard convention and
+
+node.js to
+
+pass in an environment variable called
+
+nodem to tell you
+
+if you are running in production so you
+
+can do things like this
+
+and so here i'm going to say if we're
+
+not in production i want to log
+
+and if we're non-production i also want
+
+to synchronize
+
+um the reason i'm turning off logging in
+
+prod is because as you're gonna see
+
+it actually will spit out logs for every
+
+single sql command and it can be a
+
+little much sometimes
+
+um so depending on what you're set up
+
+you may want to keep that on prod but
+
+i'd like to turn it off personally
+
+um in synchronize this is going to make
+
+sure that our database
+
+has all the tables and it's going to
+
+actually create it based on what our
+
+models look like and it'll make more
+
+sense in a second if you've never done
+
+this before
+
+um specify database name vs to do
+
+and then you need to create a user if
+
+you haven't
+
+my username is just postgres and i
+
+actually don't even need to set it i
+
+believe my password is also postgres
+
+um i actually don't know if this works
+
+or not i don't even have to set a
+
+username and password it just works
+
+but you may need to add those two keys
+
+if you create a user and you set a
+
+username password you can pass it in
+
+there
+
+all right i'm going to specify entities
+
+and for this
+
+i'm going to just pass in a door name
+
+and we're going to create a folder for
+
+this called entities
+
+and i'm going to create a new one here
+
+user.ts
+
+so each entity basically corresponds to
+
+a table in our database
+
+and actually i was going to set this up
+
+so it gets the path
+
+but you know why not we'll do we'll do
+
+it
+
+reason why it's sometimes it's a little
+
+sketchy because sometimes path is a
+
+little jank on everyone's computer
+
+all right so i'm going to import join
+
+from a path dur name is a special
+
+variable that will get us
+
+the absolute path to where we are where
+
+we run this basically
+
+so it's going to take us all the way to
+
+index.tsc is how i think about it
+
+but if it's running in a dist folder
+
+it'll take us all the way to here
+
+all right so this is like a good one to
+
+use and then we're going to join this
+
+and we're going to tell it
+
+dot slash entities and then we're going
+
+to say star
+
+dot star and this will get all
+
+javascript
+
+and typescript files that way
+
+i probably could just do this and i
+
+could also just do this because we're
+
+compiling but
+
+i like to do this because why not all
+
+right and join just takes these two
+
+paths and mashes it together and
+
+gets it to work on like windows and all
+
+the things all right so that's gonna
+
+create a connection let's go ahead and
+
+set up our first table
+
+so i'm gonna say at entity
+
+and i like to extend a base entity this
+
+just allows us to do some uh
+
+user.find and i can just run these
+
+commands and create it's very handy
+
+let's make a primary column primary
+
+generated
+
+it's just going to be an id it's going
+
+to be a number
+
+and export this
+
+and for now let's just add just one
+
+column
+
+it's going to be a text column and it's
+
+going to be their name which is going to
+
+be a string
+
+all right so if i come over here this is
+
+my logs for my server i just had my node
+
+daemon continue to run
+
+and you can see this is a logging for it
+
+now this junk right here it spits out a
+
+lot of stuff that's just because it's
+
+synchronizing
+
+and you can actually see at the very
+
+bottom it creates a table for us
+
+after it's done synchronizing the
+
+logging makes more sense
+
+so for example i can say
+
+user dot create um let's create a new
+
+user here
+
+and his name is going to be bob
+
+and we're going to save it
+
+and we can console.log the user that we
+
+create
+
+just to verify everything's working and
+
+it automatically restarted for me
+
+i can see how it inserted a user in and
+
+it gave me a user back and i could see
+
+the object right
+
+and gave an id of one and his name is
+
+bob all right so our database is set up
+
+we're able to connect to it from node.js
+
+using typewarm
+
+and now we can do things like this so we
+
+can set up the rest of our api now
+
+next we're going to be adding the logic
+
+so users can log in with github
+
+using oauth and to help us out with this
+
+we're going to be using a library called
+
+passport and specifically this passport
+
+github package here which also uses
+
+passport
+
+so i'm going to go ahead and install
+
+this library
+
+i'm going to control c out of the dev
+
+for just a second and we'll come back to
+
+it
+
+and then we also need to install
+
+passport itself so do
+
+npmi passport github and passport
+
+and then we're just going to copy their
+
+example this just makes our life
+
+really easy to set up so copy this bit
+
+and if you just google passport github
+
+and go to the readme that's what i'm on
+
+there
+
+and i like to switch instead of using
+
+var switch it to import syntax
+
+and you can see it says dot strategy
+
+there so this should really be
+
+strategy but if i hover over this it
+
+says cannot find decoration file
+
+so this is one of the cases where this
+
+library was written in javascript
+
+and since we're using typescript we
+
+don't know what the typescript types are
+
+so what we can do
+
+is this command right here copy it
+
+now this doesn't always work but in this
+
+particular case i
+
+i know that passport has types and also
+
+while we're at it i think we can install
+
+passport types
+
+too so npmi dash save dev by the way
+
+big d is equal to this flag those are
+
+both equal
+
+um yeah so we have those two types
+
+so now it's barking at us because this
+
+github strategy is not something that we
+
+can actually import
+
+here it's actually called strategy
+
+but i can use the as keyword and then a
+
+new name here so this is me
+
+importing strategy but i renamed it to
+
+get up strategy
+
+all right passport so we actually
+
+i don't know if they're gonna have the
+
+passport logic here no they're not so
+
+we're just gonna have to go to passport
+
+passport github
+
+and this is the one
+
+and this is what we need to set up so
+
+we're using express it's gonna add a
+
+middleware
+
+and we're gonna say passport initialize
+
+we're not using sessions so we don't
+
+need to do that part
+
+just this one all right so express down
+
+here
+
+oh we need to do should we do chords
+
+right now no i'm going to wait and show
+
+you
+
+how to handle coors errors in a second
+
+is what i'll do
+
+so import passport from passport
+
+um i actually forget if we have to like
+
+create a passport instance or if it's
+
+just
+
+the global it looks like it's just
+
+global
+
+passport initialize i also had to deal
+
+with
+
+serializing the user i feel like i
+
+needed to add that
+
+last time i did this so i'm going to
+
+copy this passport.serialize user
+
+um at least let me just go to my
+
+vicinder and make sure if i did that or
+
+not
+
+i'm just going to search for serialize
+
+yep add my serialized user
+
+passport serialize user and we'll copy
+
+this bit
+
+it's the same thing i had before i just
+
+wanted to verify that it was so
+
+i think i did user.id was in the
+
+original example
+
+i'm gonna have it be user.access token
+
+is how you use a string
+
+and serialize just means we're gonna
+
+pass an object for the user
+
+and we need to turn to a string and so
+
+to turn into a string we pass it
+
+uh we're gonna pass in an access token
+
+so that's gonna be what we turn to a
+
+string
+
+and this is just the callback looks like
+
+i made the type any
+
+what's the type if i don't set it to any
+
+oh it's unknown okay so yeah we need to
+
+do that i'm just going to set it to
+
+any that's fine uh
+
+and actually why don't we set this above
+
+i'm not sure if i need to do that above
+
+initialize i probably do
+
+and we're gonna copy this part here and
+
+stick it down here
+
+all right so we need to get a github
+
+client id and a github client secret
+
+so to get those things
+
+if you go to github and you click on
+
+your profile and then go to settings
+
+and all the way at the bottom there's
+
+going to be developer settings
+
+oauth apps and here you can add a new
+
+oauth app so you can see i have
+
+something here
+
+create a new one and i'm going to call
+
+this vs to do
+
+and for the home page this really
+
+doesn't matter this is only for the
+
+purposes of users what you want to show
+
+them
+
+i'm going to set mine to just localhost
+
+3002 for now
+
+um application description again doesn't
+
+matter at this point
+
+and uh callback yuri i'm going to copy
+
+this part
+
+and there should be low cost
+
+by the way this is totally fine to have
+
+as localhost it's going to work
+
+but whenever you go into production
+
+you're just going to want to make sure
+
+you come back
+
+and change this or what you might want
+
+to do is create two oauth applications
+
+that's what i've done like vs to do dev
+
+and then another one for prod
+
+okay but this is right and this path is
+
+important
+
+we're going to be using that path in a
+
+second
+
+so register
+
+all right this is my client and now i'm
+
+gonna generate new client secret
+
+hopefully this doesn't show on screen
+
+okay so i just copied my secret to my
+
+clipboard
+
+and now what i'm going to do is i'm
+
+going to create
+
+a dot m file this is
+
+uh basically a standard a good practice
+
+to store secrets
+
+so i'm also adding the git ignore
+
+m.m so this you do not want to show on
+
+github
+
+and what i'm going to put here is
+
+this github client secret
+
+and then i'm going to paste my value i'm
+
+not going to paste in front of you
+
+because then you would see the value
+
+but something like that github client id
+
+all right so it's going to look like
+
+this i'm going to go paste in the real
+
+values
+
+so yours should look like this and you
+
+paste in the real values here
+
+and what i like to do is create an
+
+example of this
+
+example so what i'll do is i'll actually
+
+come over here and i will just paste in
+
+the dot
+
+example all the environment variables
+
+that we're using
+
+in this case we're just using these two
+
+and this is something that i will push
+
+to get
+
+and that the reason i'm doing this is
+
+anyone who uses the project
+
+knows all the environment variables that
+
+need to be added now we need to do one
+
+last thing to be able to load in those
+
+environment variables
+
+and access them here um so to do that i
+
+like to use a library called dot
+
+m safe dot m safe just is gonna read the
+
+example file
+
+and make sure that they're all defined
+
+and then i'm just going to require dot m
+
+safe and dot config
+
+and i like to add this at the top and
+
+this is where the environment variables
+
+are going to be loaded
+
+and i also like to actually use a little
+
+so right now
+
+if i do process.m dot
+
+i don't get auto completion it doesn't
+
+tell me what environment variables i
+
+have access to
+
+so what i can actually do is run this
+
+command called mpx
+
+gen inf types and uh
+
+these are the flags i actually don't
+
+know if i think my things will just go
+
+by default i forgot honestly how i coded
+
+this let's see if this works
+
+you might just be able to say mpx gen
+
+and types.m
+
+yeah it does that by default nice
+
+actually i don't like it because i want
+
+it to be inside my source folder so
+
+actually never mind
+
+yeah i'm gonna do like this so i'm gonna
+
+create a types folder inside my source
+
+so this is a little cli tool that i made
+
+that basically it's gonna read your
+
+environment
+
+file and then generate typescript types
+
+for it
+
+and so yeah use these flags right here
+
+these are the good ones and we'll rerun
+
+it
+
+um refresh oh yes here we go
+
+so i'm gonna delete this m.t.s so when
+
+that's done running it should have added
+
+something that looks like this
+
+and now the reason why we do that
+
+we get a client id right process
+
+m dot client secret now we get auto
+
+completion and it knows it's defined
+
+it's a string
+
+all right so this is going to be
+
+localhost
+
+and uh this callback url should match
+
+whatever we gave github by the way
+
+and there's one last part to passport
+
+we did this and this is the thing
+
+so we're gonna have a call back and also
+
+what url they go to
+
+so we'll paste those in so now when i go
+
+to slash auth
+
+github that is how i initiate the user
+
+to log in with github
+
+and then this part here this is what's
+
+going to be called
+
+after the user's successfully you know
+
+logged in and it's called back
+
+so this part needs to match this up here
+
+and it does
+
+i'm not going to worry about a failure
+
+redirect because we don't really have a
+
+really a website
+
+all i'm going to say here is i'm going
+
+to rez that i'm going to send
+
+and i'm going to say here like you
+
+logged in correctly
+
+um oops and i'm gonna underscore that
+
+uh by the way underscore is just kind of
+
+a convention the typescript knows that
+
+this is not used
+
+so now if we come up here to our
+
+function we need to fill this part out
+
+as well
+
+so what we're going to be doing is
+
+github is going to give us a lot of
+
+information
+
+and you're going to see that information
+
+in our log so i'm just going to log the
+
+profile there and here we can say null
+
+we did not get an error and this
+
+callback is what we we call whenever
+
+we're done with whatever we want to do
+
+in this function
+
+we're actually going to create a user
+
+but not yet i just want to show you what
+
+this logs first
+
+um so we're going to call the callback
+
+and then the second part is any info
+
+that we want to pass
+
+to our callback here so what i actually
+
+like to pass in is an access token
+
+and a refresh token we're actually not
+
+going to use
+
+the access in the refresh tokens there
+
+so you can ignore those
+
+and i'll just make them underscores
+
+we're going to create our own access
+
+token and our own refresh token
+
+now if you wanted to make commands on a
+
+behalf of the user
+
+using the access token and the refresh
+
+token you could but personally for this
+
+project we're not we're just using
+
+github to actually
+
+verify their user and they can log in
+
+all right so we're gonna give this a
+
+save
+
+so now in my browser when i go here it's
+
+gonna ask me to log in with github
+
+all right so actually let me make sure i
+
+have the server started
+
+so npm run dev
+
+all right it's got a little close 3002
+
+slash auth github
+
+and you'll notice like it redirected me
+
+if you look at the url
+
+i'm now logging in with oauth at
+
+github.com
+
+so this is good so far and then i can
+
+authorize it with my github account now
+
+i'm already logged in with github so
+
+didn't ask me
+
+but if you're not logged in you'll have
+
+to log in alright so i'm gonna authorize
+
+and it's gonna take me back dude it
+
+failed to serialize the user into the
+
+session
+
+what tech is that about
+
+um maybe it's because i didn't say
+
+session is false
+
+that's probably what it is i feel like
+
+there's a session maybe here
+
+no oh oh maybe initialize i have to say
+
+session is false
+
+i feel like there's some place i put i
+
+was not using a session maybe it's on
+
+authenticate by the way what i'm doing
+
+right now is i'm i'm literally just
+
+hitting control space on each one
+
+until i see the key that i want this is
+
+it
+
+false
+
+i'm like five percent sure that's what
+
+the
+
+maybe it's here as well
+
+session false
+
+because i have the serialized user code
+
+here and this access token
+
+is an empty string that's maybe actually
+
+it wants me to put a real value there
+
+that one of those things could be it
+
+um also i can remove the code where we
+
+create a user in the logs
+
+comment that out all right now let's try
+
+that again
+
+all right off github
+
+so you notice like it just instantly we
+
+didn't go to that intermediate screen
+
+it just says you logged in correctly one
+
+that means it worked
+
+number two that's just how oauth works
+
+so if i've already authorized the app i
+
+don't have to do it again
+
+if you open up the logs for your server
+
+unit should now see like a giant object
+
+with a bunch of fields in it
+
+this is data on the user who just logged
+
+in with github
+
+so now we want to take this information
+
+and depending on your application you
+
+may save all of it or you may just save
+
+some of it
+
+depending on what you care about and so
+
+we are going to do that and that's how
+
+we know who the current user
+
+is is by this information so what we do
+
+is we're actually going to put some
+
+logic right here where we put
+
+our console log so we're going to be
+
+using
+
+profile dot id this is how we're going
+
+to tell if this user already exists
+
+in our database because the user is
+
+going to press login with github
+
+if they've never used their application
+
+before or if they're coming back for a
+
+second time and so
+
+we don't want to just say user.create
+
+right and create a new user every single
+
+time we want to check if it exists and i
+
+also
+
+by the way again i just command clicked
+
+i did that very quick to come over here
+
+because i want to add a new field which
+
+i'm going to call github id
+
+and one thing you may want to add is a
+
+unique constraint
+
+just to verify no funny business is
+
+going on and this should be unique
+
+across your users
+
+so what i'll do here is i will create a
+
+user but i'll only create it if it
+
+doesn't already exist
+
+so i'm going to say const user is equal
+
+to
+
+and actually i'm going to let it and
+
+you'll see why i do that in a second
+
+and we're going to say user.find1
+
+and we're going to say where the github
+
+id is equal to profile.id
+
+so we're going to first check if the
+
+user is already in our database
+
+if they are
+
+we might want to update the user right
+
+so the profile information might be
+
+fresher so what we can do is we can say
+
+user
+
+or we just say user.update
+
+and we can update the information or if
+
+we want to we can use typeforms
+
+just user.name is equal to
+
+profile.displayname
+
+and we can say user.save so there's two
+
+different syntaxes you can use
+
+for typeform to save the data so this is
+
+just us updating the name so in case the
+
+display name changes on github
+
+when the user logs in with github next
+
+we will get that value
+
+otherwise what we want to do is the user
+
+is never logged in before
+
+right this is their first time so what
+
+we want to do is create that user
+
+so we're going to wait user.create
+
+the name is going to be
+
+profile.displayname and.save
+
+now display name can sometimes be null
+
+so you may want to
+
+come to our user and make this noble
+
+all right so then down here i can delete
+
+this stuff we're not going to worry
+
+about i'm going to keep this simple and
+
+just have an access token
+
+and we're going to make this
+
+asynchronous
+
+so i'm going to create an access token
+
+for the user and we're going to pass it
+
+here so to do this i'm going to make it
+
+a jwt so i'm going to install json web
+
+token
+
+this is a library that's just going to
+
+have the functions
+
+and i'm going to install the types for
+
+it because i already know that this one
+
+needs it
+
+and then also just going to restart dev
+
+server
+
+and i'm going to import sign from json
+
+web token
+
+and actually this is actually kind of
+
+the syntax i prefer
+
+let's do jwt from json web token
+
+and we'll say jwt sign so first is going
+
+to be anything you want to store in the
+
+token
+
+we're going to store the user id which
+
+is just user to id
+
+and then we're going to have a secret
+
+i'm just going to put a random string
+
+here
+
+and then lastly how long you want to
+
+last for i'm going to say this expires
+
+in one year
+
+so uh this part right here you may want
+
+to add as an environment variable
+
+and actually i would suggest you doing
+
+that i'm just going to hard code it here
+
+because i'm too lazy to go open up my.m
+
+and then edit it out
+
+so that's i'm just going to hard code a
+
+random value here
+
+all right so we have the callback here
+
+and then if i
+
+come down to my callback
+
+here in the request
+
+it's actually going to stick on the user
+
+and why don't i just res.send
+
+so i'm going to just send back what the
+
+request.user is
+
+and what you'll notice is it's actually
+
+going to be this thing right here
+
+so it's going to be an object and the
+
+access token is going to be
+
+assigned jwt so let's go
+
+over here and just authorize with github
+
+again
+
+is it down is down what did i do wrong
+
+column github of relation user contains
+
+null values
+
+okay so what happened is i added
+
+a column here that i said that is unique
+
+and has to exist and it's a github id
+
+right but i already have users
+
+in my database so i have a couple
+
+choices i can drop my database
+
+i can and actually
+
+there is
+
+drop schema i'm going to say it's true
+
+that's actually going to be the fastest
+
+and then it's working and i'm going to
+
+delete that now because i don't want to
+
+drop the data every single time and
+
+basically that just deleted all the
+
+users from the database
+
+and all data from the database
+
+okay so now i'm going to come here run
+
+this and let's do it
+
+and just let you know let's do a thing
+
+and it crashed no value in the column
+
+github oh
+
+so in user.create
+
+the github id we need to set that as
+
+well
+
+so that's just going to be the github id
+
+is going to be the profile id here
+
+all right let's try it again
+
+nice so i can see i have an object back
+
+and i have the access token
+
+now by the way i'm currently using a
+
+extension to make this look pretty i
+
+think it's just called like json format
+
+or something on chrome so yours may look
+
+a little bit different if you don't have
+
+anything for this
+
+but i would suggest installing something
+
+if not
+
+all right so the last step of this
+
+is instead of just sending it just to
+
+the browser to show the user their token
+
+because they don't actually care
+
+is to actually send this or redirect
+
+this
+
+back to the user by the way this is
+
+going to be
+
+access token that's the value we need
+
+the typescript types are a little off
+
+for this so i just i just do any on that
+
+so normally if we're just working with a
+
+website we would redirect back to where
+
+that website is located
+
+but because we're authenticating with an
+
+extension the extension is
+
+actually going to have to start up a
+
+server that we can send it to
+
+and so i'm going to start up that server
+
+on localhost
+
+54321 and this is something that will
+
+stay the same
+
+even in production because what's going
+
+to happen is the extension is actually
+
+going to start up a server on the
+
+person's local computer
+
+and then it's going to send the token
+
+there so this is correct even in prod by
+
+the way
+
+and here i'm just going to say slash
+
+auth
+
+and i'm going to stick this access token
+
+and we'll do that save so now if i come
+
+here
+
+right it's going to at the very end of
+
+the process
+
+it's going to say site not reached
+
+that's expected it's going to redirect
+
+us to localhost 54321 off and it's gonna
+
+have our token in there
+
+so what we need to set up next is on the
+
+extension side to actually
+
+read this token so i have the
+
+package.json open for our extension
+
+and the first thing that we're gonna do
+
+is add a new command
+
+and we're going to create a on not
+
+on but a authenticate command
+
+now this is technically kind of optional
+
+but i like to do this just in case
+
+someone wants to re-authenticate
+
+using a command and they can call this
+
+and also it's just good for testing so
+
+we're going to add that and again we
+
+just have to come down here and tell vs
+
+code that we're adding that
+
+and what the
+
+items here should be so this should be
+
+authenticate and i just call it
+
+authenticate here as well
+
+for the title and then in our extension
+
+let's go ahead and add one let's copy
+
+paste this one here
+
+and i'm going to actually create a new
+
+file to put the authentication logic
+
+because
+
+there's kind of a tiny bit of it
+
+authenticate dot ts
+
+and uh for now we'll just say
+
+console.log called
+
+and we'll call authenticate here
+
+all right so let me just make sure i
+
+have my
+
+thing still running
+
+go to my extension and run yarn watch
+
+i turned it off at some point and then
+
+i'm just going to rerun my
+
+press f5 to launch this and it's this
+
+one here
+
+i think if i move my vs.vs code up to
+
+the
+
+top level it won't ask me so if you put
+
+all of your folders in the top level
+
+folder like i did what you can do is you
+
+can move this dot vs code folder
+
+up to the top actually i'm not going to
+
+do it right now because i think i also
+
+have to like fix the paths
+
+um for this so i'm not going to worry
+
+about it for now but
+
+note that's something you could do if
+
+you want to go down that path
+
+all right so what's going on here
+
+engines is mandatory but must be type
+
+object
+
+um we'll deal with that later alright so
+
+i'm going to run authenticate
+
+and if i come to debug it's called
+
+perfect
+
+all right so step one and authenticate
+
+is going to actually send us to
+
+our api and take us to that url that we
+
+were clicking right
+
+so in our browser when we were going to
+
+3002
+
+slash auth github right this was step
+
+one to launch
+
+so we're gonna do that same thing from
+
+vs code so what we can do
+
+is we can import from vs code
+
+move this over
+
+um is it command execute command
+
+vs code.open
+
+um and then we are going to pass a ure
+
+for this
+
+vscode.yuri.parse and then a url
+
+so this is the syntax the tell vs code
+
+to open up a url basically
+
+so we call execute command and then we
+
+say vs code open
+
+and then here we are going to pass a url
+
+and notice we have to parse it this is
+
+just how vs code handles different urls
+
+you have to uri.parse on it
+
+because you can actually pass different
+
+things than just urls here
+
+but urls is the only thing i've actually
+
+ever used now i can just paste in my
+
+oh i thought i had pasted the euro from
+
+here
+
+i can just paste it in like this and
+
+this will work perfectly fine but one
+
+thing that i like to do is create a
+
+constants file
+
+and do an api based url create a
+
+variable called api base url
+
+the reason being is later down the line
+
+like when i go to production i may want
+
+to change
+
+what this value is and so it makes it
+
+very easy to have one location for this
+
+all right so then i'm going to put api
+
+base url here and we'll save this as
+
+well
+
+all right so if i come back over here
+
+and i reload this
+
+and i do authenticate
+
+so you notice it took me one back to my
+
+browser and then also you'll notice how
+
+it took us to the redirect so that's
+
+perfect
+
+now we need to actually listen for this
+
+redirect and get the token from it
+
+and by the way this is one reason why i
+
+usually like to use sessions
+
+but for this it's not easy to use a
+
+cookie slash i'm not sure if you can
+
+even use a cookie at all to get this to
+
+work
+
+we need to pass the token in the url
+
+like this so
+
+jwts are just a little bit simpler in
+
+this case so that's why i'm using that
+
+by the way
+
+but so yeah so we just need to listen
+
+for this and you may have been
+
+like prompted to accept something when
+
+it asks you about
+
+uh authenticating like hey are you okay
+
+opening up this url
+
+that happens the first time and then
+
+after the user says okay it doesn't ask
+
+anymore
+
+all right so let's go back over to our
+
+code
+
+mine's over here
+
+so how do we actually listen for that
+
+url well what we're going to do is we're
+
+actually going to start up a server
+
+and listen for a request now usually i
+
+would use express for this but
+
+since we're using webpack to compile or
+
+bundle everything it was not trivial
+
+slash i didn't know what setting i
+
+needed to add to get to play nice with
+
+webpack so i just switched to a library
+
+called polka
+
+so i'm going to import polka
+
+from polka and it's basically just a
+
+lightweight version of express
+
+there's really no reason for us to use
+
+express in this anyway since
+
+um we're only doing a very simple server
+
+we don't need any middleware or anything
+
+like that so i'm gonna install polka
+
+here
+
+actually not here in my api no my
+
+extension
+
+um let's just pull up the docs for polka
+
+while that's loading
+
+so this is what i'm talking about here
+
+and you'll notice these syntax is very
+
+similar to express
+
+so if you use express before polka is
+
+going to be very
+
+intuitive and let's install the types as
+
+well
+
+copy this
+
+all right so i and i actually like to
+
+initiate the polka server
+
+before i um open the url just to make
+
+sure it's all ready
+
+and is it not happy default export
+
+i'm just going to tour to our ts config
+
+over here and add
+
+default allow synthetic default imports
+
+to true
+
+um i'm thinking that might fix it it did
+
+cool
+
+that just allows you to import it like
+
+this and i like using this syntax
+
+all right so we're going to say app is
+
+polka um and at the very end here we are
+
+going to listen for
+
+five four three two one right so you'll
+
+notice this is the port that we are
+
+redirecting to
+
+all right so what we're going to do here
+
+is if we got an error
+
+we are going to display the error
+
+message so
+
+window dot show error message
+
+on air dot message
+
+otherwise after we start up the server
+
+we are going to send them and complete
+
+the auth process
+
+um error has to type any okay
+
+all right so here we're going to say
+
+app.um
+
+git and the url we specified
+
+and if i go back because i i did forget
+
+and where are we redirecting i called it
+
+slash auth and then we're gonna have an
+
+access token okay
+
+so slash auth slash
+
+colon token
+
+all right so i can get the um so you
+
+notice i put a colon here
+
+colons are variables so this path can
+
+take any value and it's going to store
+
+it in a variable called token for us
+
+so if i say rec.prams prams is going to
+
+be an object
+
+that we can destructure and get the
+
+token and notice the names line up
+
+now if we do not get a token for some
+
+reason
+
+we can just return but we can say
+
+res.end
+
+and we say something went wrong and you
+
+notice i'm just sending some html back
+
+to the browser since they're in the
+
+browser
+
+um and then here i'm just going to
+
+console.log
+
+and see if we get a token and then i'm
+
+going to say res.end
+
+auth was successful
+
+you can close this now
+
+and yeah let's go ahead and reload this
+
+and test that out so if this works
+
+what's gonna happen
+
+is we should actually see some html
+
+authenticate result in error running
+
+contributed command authenticate failed
+
+running they can oh my authenticate
+
+command failed
+
+i thought my servers failed to start up
+
+i'm just gonna do a hard reload because
+
+i'm not thinking that should crash
+
+we don't need that okay authenticate
+
+are you serious oh there's probably an
+
+error happening in here going to try
+
+catch it
+
+and then my console log the value
+
+because it wasn't giving me like a stack
+
+trace or anything
+
+so let's go to debug console
+
+all right this is perfect so polka dot
+
+default is not a function
+
+oh what
+
+does it want me to import it like this
+
+we'll reload
+
+up yep now it's working so i guess i
+
+needed to do different syntax
+
+and i thought my ts config maybe i have
+
+to do like
+
+uh yes module interrupt true
+
+to be able to get that to work but
+
+anyway we got it working so i'm not
+
+going to touch this part
+
+and that's good but yeah you'll notice
+
+how i redirect this back to
+
+rh1 and said auth was successful and if
+
+i look at my debug console
+
+i actually see a token here
+
+so the idea is if i
+
+yep in our in our code right here we now
+
+can use this token
+
+and save it and this is how we know who
+
+the current user is
+
+we're going to keep this token so this
+
+is how we do the authentication process
+
+so in vs code the way that you actually
+
+store tokens or persist data if
+
+is in this thing called global state and
+
+you have to access global state by this
+
+context variable here
+
+um and here i can set and update items
+
+so what i like to do is actually create
+
+like a little class here called token
+
+manager
+
+and this is just basically going to have
+
+a global reference to this that way i
+
+can access it anywhere
+
+here we're going to create a static
+
+reference which is going to be global
+
+state
+
+and if i hover over this we can get the
+
+type so since we're using typescript i
+
+have to specify what the type of this
+
+field is
+
+and i don't know what the type of this
+
+field is so what i do is i just hover
+
+over here because i know this is what it
+
+is
+
+and i can copy it extension global state
+
+is a vs code memento and this okay
+
+um we're not even going to be using set
+
+keys for sync so i'm just going to copy
+
+this part
+
+and we can import vs code or maybe not
+
+and then the idea is
+
+i just say token manager
+
+and import it of course global state is
+
+equal to that
+
+and then i'm gonna have some functions
+
+here like set token
+
+and it's gonna be a string
+
+and here we will update and i'll return
+
+this
+
+and here i can say token vs to do token
+
+and i think there's like a special thing
+
+for the keys that they can't have like
+
+special characters or something
+
+if you put like some crazy stuff in
+
+there like that it'll it'll warn you or
+
+something and tell you what you can use
+
+i'm just going to use this as my key
+
+and maybe let's put it into a constant
+
+variable
+
+and then we're going to set the value
+
+which is going to be token
+
+and we'll create a getter for this
+
+and perfect so now we can just use this
+
+token manager wherever we need to set
+
+and get tokens
+
+so in my authenticate over here i'm just
+
+going to say
+
+tokenmanager.settoken and pass in the
+
+token
+
+and i'm going to wait the response and
+
+the other thing that i like to do
+
+is after res.end happens and we send
+
+this this stuff
+
+we're not expecting any more requests to
+
+this so we can actually close this
+
+so we can close it by saying app.server
+
+dot close
+
+now the typescript type is actually
+
+wrong for this so
+
+it says server doesn't exist on type
+
+polka but it actually does
+
+so i can just cast it to any here and
+
+this should work
+
+all right so i guess let's try this
+
+token manager thing
+
+and what i will do
+
+is just at the beginning when we
+
+activate
+
+and get token i believe okay yeah let's
+
+specify that this returns a string
+
+as get a promise stringer undefined is
+
+not assignable to type okay
+
+so if the key doesn't exist it can also
+
+return undefined so that's why i'm
+
+having to do this
+
+if you're new to typescript this pipe is
+
+an or so this value can either be a
+
+string or undefined
+
+and this specifies what this method
+
+returns
+
+so i'm saying that it returns that and
+
+it couldn't infer it because vs code
+
+doesn't know what we get we might store
+
+there so i guess you could store more
+
+than just strings personally i've only
+
+stored strings in there
+
+but note this returns a promise update
+
+is a promise
+
+git is synchronous
+
+all right so i'm gonna open up the
+
+debugger
+
+i'm gonna reload my extension
+
+and while i was expecting it to tell me
+
+that
+
+token value is empty let's clear this
+
+and reload again
+
+wait why why isn't it showing my console
+
+log i don't get it
+
+it's not calling this for some reason
+
+all right well let me put this in my
+
+hello world
+
+oh you know what let me just verify that
+
+it's recompiling it maybe it's not
+
+recompiling in the watch flag
+
+no it wasn't recompiling i have no idea
+
+why the console log wasn't showing up
+
+so i'm just going to stick it in my vs
+
+to do hello world command
+
+i'm going to comment out this create
+
+show panel and instead
+
+let's just show a little pop-up and
+
+we'll do a plus sign here so i'm just
+
+going to display the tip what the token
+
+value is
+
+in a window all right so we'll reload
+
+and i'm going to say hello world
+
+all right so cool so the token value is
+
+currently undefined
+
+so now let's authenticate
+
+it was successful i can close the window
+
+now
+
+and notice how when i call hello a
+
+second time it actually has our jwt
+
+in there and the beauty of this
+
+if i reload the extension
+
+and i call hello world the token should
+
+still be there
+
+and sure enough it is there so we now
+
+have a token stored on the user
+
+and it's going to persist as the user
+
+closes vs code and reopens it
+
+and so this token is what we will use to
+
+make sure the user is authenticated
+
+and every request we send to our api now
+
+is also going to send this token so
+
+that's what we're going to set up next
+
+so back at the index file for api we're
+
+going to be adding
+
+a new route now that we know or can
+
+store a token
+
+on the user we can use that token send
+
+it to our api to get the current user
+
+or do any kind of authentication that we
+
+need to or like create authenticated
+
+routes
+
+so we're going to start off with a
+
+simple one here called a me route
+
+and the purpose of this route is for us
+
+to be able to call it
+
+and then get the current user
+
+so what we're going to do is send the
+
+token that we get in a header
+
+so here i'm going to say
+
+token is equal to rec dot headers
+
+dot get actually we don't have do dot
+
+yet we can just say dot
+
+and i'm going to say authorization now
+
+the standard format for
+
+the authorization header is something
+
+like this
+
+it'll say bearer and then i'll have the
+
+token value like that
+
+so what we're going to do is here we're
+
+going to say auth header
+
+if we don't get an off header we can
+
+send back a null user
+
+and here this is the token is going to
+
+be the auth header and we are just going
+
+to split by space
+
+and uh you'll notice it automatically
+
+did a question mark that's because i
+
+forgot to put a return value here
+
+and now we don't need the question mark
+
+because we know that this is going to be
+
+defined
+
+and this is going to be the second value
+
+so
+
+first index and again
+
+if there's not a token
+
+we can return a null user
+
+otherwise if we have a token we now want
+
+to do something like this
+
+user.find1 and pass in the id
+
+of the user so and we also need to make
+
+this async
+
+so how do we know the id for the user
+
+well because we have this token what we
+
+can do is we can get the payload from it
+
+so we can say try catch
+
+and reason why we're doing a try catch
+
+is because the jwt verify function will
+
+throw an error if the token is not valid
+
+so in that case we can also return a
+
+null user here
+
+and then here we're going to pass in the
+
+token uh the secret
+
+so the secret is whatever we used the
+
+string that we passed into our wt sign
+
+now i went and put this in environment
+
+variable while you guys weren't looking
+
+so i was a good programmer
+
+so go ahead and take whatever you chose
+
+to put here for the secret
+
+down here as well
+
+um and then i don't think there's really
+
+any options you need to pass in here
+
+for at least verify for us
+
+and we're going to get the user id from
+
+that because that's what we stored
+
+inside of our token right here
+
+user id and actually usually how i do
+
+this is
+
+that's going to be the payload and we'll
+
+say let user id
+
+is equal to payload.userid
+
+and uh if you just hover over this you
+
+can see it's a string or an
+
+object i'm just going to cast it to any
+
+or not cast it i'm just gonna say it's
+
+type any
+
+all right so here i can do one last if
+
+check if i want
+
+if for some reason we did not get a user
+
+id again we can return no
+
+user otherwise we can look up the user
+
+and return them here
+
+res.send the user
+
+all right so this route is complete so
+
+we can now call this
+
+sending in a header with our token and
+
+it should return the current user
+
+so if i go to my svelt code
+
+and uh let's do sidebar
+
+by the way i don't know if i mentioned
+
+this i probably did i just did command
+
+space
+
+and then start typing to uh
+
+come over here to the sidebar component
+
+all right so in in here now i want to
+
+fetch the current user and just like
+
+display them right so i want to call
+
+that me route
+
+now in svelt you can just add fetch
+
+you can just use fetch like this and i
+
+like to stick it in on mount
+
+now there is some stuff i've seen where
+
+you can actually just store a promise
+
+and deal with that
+
+and load it there's like a special
+
+syntax but i've actually found that it's
+
+less helpful when your application gets
+
+more complex and it's better to just do
+
+something like this
+
+where you set loading equal to actually
+
+true by default
+
+and then when you're done fetching you
+
+send set loading to false
+
+and we're going to put this down here
+
+i want to set the window event listener
+
+first so this is going to make
+
+async and here we're going to say
+
+oops
+
+so i could just hard code http logos
+
+3000 to
+
+and put the mirror out but this is a
+
+case where i'd really like to use
+
+the constant api based url that i have
+
+right here
+
+so what i'm going to do is in my sidebar
+
+provider
+
+actually just pass that in
+
+so you see how we are just passed a
+
+global tsvs code here
+
+we could do the same thing for like the
+
+apa bc
+
+the api base url
+
+there we go and
+
+i just want to make sure i spell it
+
+correctly i did sorry i've just been
+
+like slurring my words for the past like
+
+two seconds here
+
+all right and we're going to say
+
+json.stringify
+
+and we're going to import this a reason
+
+why we do json stringify is just to
+
+escape this
+
+and put quotations around it to pass it
+
+to this value
+
+now we can also enter pages actually not
+
+pages globals
+
+add api base url as a string uh reason
+
+for this
+
+is that we know that this is owns it's
+
+going to be const as well
+
+that way we can access this like if i
+
+didn't add this
+
+if i tried to access the api base url
+
+you'll notice how there's no auto
+
+completion it doesn't know it exists
+
+but as soon as i add that
+
+api base url is a thing
+
+all right and we're just going to do
+
+this
+
+so we're going to await the response
+
+and this should give us a user
+
+and we will await that as well and
+
+actually why don't we just
+
+we'll say data because what i'm going to
+
+do is i'm going to
+
+say user up here is null
+
+and say oops user is equal to data dot
+
+user
+
+all right so after we have fetched this
+
+wait
+
+back should be capitals there
+
+we're just updating the state here and
+
+this will re-render with
+
+the values so now down here
+
+in my to-do's and all this stuff what i
+
+can do is i can add an if statement
+
+so to conditionally render so if you do
+
+hashtag if and svelt
+
+i can say if loading
+
+and then this is how you do if
+
+statements you do this slash if down
+
+here with brackets
+
+so if we're loading maybe we just say
+
+div loading dot dot dot
+
+else actually i think it's just colon
+
+yep
+
+not else else if we have a user
+
+then display a pre tag
+
+and let's display the user
+
+user has implicit titan type any so why
+
+don't we say it is either null
+
+and i think this is everything on our
+
+user a name and just an id
+
+um otherwise no user is
+
+logged in so these are the three states
+
+that we can possibly be in
+
+now if i were to run this code right now
+
+it's always going to return null
+
+so if i reload
+
+open this up
+
+okay loading wait
+
+is it crashing oh you know what it is
+
+crashing
+
+all right so if i go to my webview
+
+developer tools
+
+all right yeah we actually have two
+
+errors here so we have a chorus
+
+error which actually i wasn't expecting
+
+us to hit the coors air yet
+
+um i think so maybe after we get rid of
+
+this coors error we're gonna get another
+
+error after this but let's fix cores
+
+first
+
+so access to fetch hbo closed from
+
+origin has been blocked by course policy
+
+no access control allow origin alright
+
+so on our api we are going to install
+
+two packages well one package cores and
+
+then the types for cores
+
+so npmi with the d flag types course
+
+and then let's go over to the index file
+
+over here
+
+and we're going to import course from
+
+course and by the way i switched to the
+
+index in our api
+
+and all we're going to do is in our app
+
+we're going to say app.use course and
+
+we're going to set the origin
+
+to localhost
+
+wait what am i doing what is going to be
+
+the local host origin
+
+access to fetch like this is a vs code
+
+extension
+
+oh is this literally what i set the
+
+course to oh you know what i don't even
+
+know what i would set the course value
+
+to
+
+i'm just going to put a star i'm
+
+guessing this is the origin it does say
+
+from origin and it gives me it right
+
+here
+
+all right so if you want to just do your
+
+vs code extension
+
+i guess you could do this and copy this
+
+value here i actually have not tried
+
+this i think in all of mine i've just
+
+done
+
+core star for vs code extensions so
+
+that's what i'm gonna set here
+
+all right so let's make sure that
+
+reloaded i think it should
+
+and this is my api logs good listing on
+
+3002.
+
+i'm going to control r to reload and yep
+
+looks good now
+
+all right so it says no user is logged
+
+in which is expected
+
+and even though i am logged in
+
+technically right
+
+the reason why it thinks i'm not logged
+
+in is because i did not pass in an
+
+authorization header right
+
+so headers authorization
+
+and here i need to put bearer
+
+and i need to put my jwt right here to
+
+get the current user and again i can put
+
+a bad value right and that's still going
+
+to tell me i'm not logged in
+
+right user not logged in i need a good
+
+token to pass in here
+
+so where am i getting my token from well
+
+we have the access to that token one
+
+possible way you can do this and i've
+
+done before is just pass it in here
+
+access token is equal to json.stringify
+
+and pass
+
+in the tokenmanager i get token
+
+so this works and i can again add a
+
+global
+
+access token which is a string
+
+and i can pass my access token there
+
+and now if i reload this oh we'd be
+
+crashing
+
+i was not expecting that access token is
+
+not defined
+
+axis token oh so you notice how i just
+
+reloaded my web view but i didn't reload
+
+the extension
+
+because i made a change in sidebar
+
+provider that's the extension
+
+so i need to do a full reload okay
+
+and now i should expect a user nice
+
+there i am also there's my github id
+
+nice
+
+now for the first version of my vs code
+
+extensions this is actually how i passed
+
+in the access token
+
+but i don't do it like this anymore and
+
+the reason is is it's hard coding the
+
+token here
+
+and this value never changes right and
+
+what i really want to be able to do is
+
+be able to get the current version from
+
+token manager
+
+whenever i need an application because
+
+what i ran into is you'd
+
+be able to log out and if you log in
+
+again you really need to be able to
+
+reset this token and whatnot
+
+and uh it's not easy if you do it like
+
+this
+
+i could set let but there's going to be
+
+some some problems that you run into
+
+so to avoid this headache basically and
+
+just i just don't do it this way
+
+instead what i do is in the sidebar
+
+i'm going to send a message to my vs
+
+code extension
+
+telling it that i want some tokens and
+
+basically i just store the access token
+
+as a variable so access token is equal
+
+to an empty string
+
+like that so i'm going to get rid of it
+
+at this global context
+
+and just store it in a sfelt variable
+
+all right so i'm going to say
+
+vs code or ts vs code
+
+dot post message
+
+type git token
+
+and that's actually all i need
+
+so this is just me sending a message to
+
+the extension telling it that i want its
+
+token
+
+and then what i do is i'm going to make
+
+a new case to listen for
+
+token and what this will give me
+
+is message.value is going to be
+
+the token and then what i could do is i
+
+can set my axis token
+
+is equal to that i don't know why i made
+
+this uh
+
+intermediate token here we're going to
+
+do it like that
+
+and then also what i can do is uh this
+
+token that i get here
+
+is kind of i'll initially fetch the user
+
+as well
+
+so i'm gonna put this logic here
+
+and we will get rid of nope this looks
+
+good
+
+i think it's mad at me because i didn't
+
+set a value
+
+so if i go to my globals over here i'm
+
+going to say value can
+
+sometimes be undefined wait doesn't like
+
+my question mark
+
+or undefined
+
+wait why is it acting like that all
+
+right i don't know why
+
+ts typescript is acting like that i'll
+
+just pass in a value of undefined
+
+and it can be happy with itself
+
+all right so let's finish this up so
+
+this is going to be
+
+async that way i can do this here
+
+alright so i trigger git token i need to
+
+actually add this on the extension side
+
+but the gist of it is
+
+i'm telling it to get me a token once it
+
+sends me the token
+
+back then i'm going to fetch the user
+
+and
+
+display the user like this so now over
+
+here
+
+i can remove this access token variable
+
+that we're passing in
+
+and instead listen on this
+
+so here it says get token that's what i
+
+used right
+
+um yep get token
+
+and here i'm just going to then send a
+
+message back so
+
+webview.webview.postmessage
+
+and how did i structure this again
+
+this is going to be type and then the
+
+value is the token so type
+
+token and the value is going to be
+
+tokenmanager.gettoken
+
+all right and
+
+it's going to pass the value to the
+
+access token
+
+and then we're going to use the access
+
+token to fetch the user
+
+this looks good all right so let's give
+
+this a try and make sure everything is
+
+wired up correctly
+
+again let me just go over this one more
+
+time of how this is working
+
+so when our svelte component mounts for
+
+the first time
+
+is going to send a post message to our
+
+extension
+
+and uh it's going to pass in the type
+
+git token that's going to come over here
+
+and it's going to receive the message
+
+git token
+
+it's then going to send a message back
+
+to the web view
+
+passing in the current token from the
+
+token manager
+
+and this should be then called it should
+
+be listening for it and it should fetch
+
+the current user with the current token
+
+and notice with the setup we can now
+
+call
+
+git token whenever we need to basically
+
+refresh the token or get a new token
+
+and so that is the advantage of this
+
+method and yeah let's come over here we
+
+made some changes to the extension so
+
+we're gonna have to do a full reload
+
+and let's see if it tells us that we are
+
+ben and it tells us we are ben so it
+
+does work
+
+um so it basically we get the same end
+
+result but now at the beginning it's
+
+going to send a message back and forth
+
+real quick to get the current user
+
+next i want to add a button that we can
+
+actually log out and that we actually
+
+keep track of the state if the user is
+
+logged in or not we can show them a
+
+button
+
+to actually log in or show them their
+
+to-do's
+
+so we're going to do is just come up
+
+here and keep
+
+note of our user so our user can either
+
+be
+
+null or it can be an actual object or we
+
+may be loading
+
+and so that's how we're going to keep
+
+track of what state now if we had a
+
+bunch of other pages we may want to
+
+create a page
+
+variable but i'm good with just this for
+
+now since we have simple state
+
+so what i'm going to do is i'm going to
+
+actually move the
+
+logic for to do's into a different file
+
+so i'm going to create a new component
+
+here
+
+called to do's dot svelt
+
+and i'm going to copy this entire form
+
+and we don't need this buttons at the
+
+bottom anymore so i'm going to remove
+
+those
+
+and it uses some text so we'll copy that
+
+all right also we need to do soups i
+
+copy too much
+
+what the heck is this auto completion
+
+all right to-do's
+
+and we're good so i just moved the logic
+
+over and we can now render this to-do's
+
+component over here
+
+um so window.add event listener was for
+
+adding a new
+
+to do so we're actually going to copy
+
+our unmount and put it over there as
+
+well
+
+don't need this and i don't need to
+
+listen for the case where there's a
+
+token
+
+and we need to import on mount
+
+and now i don't care about the new to do
+
+here
+
+perfect we need to move this style
+
+over as well
+
+paste that in all right so here
+
+if we have a user we're going to render
+
+the to-do's
+
+and why don't we pass in a user as a
+
+prop
+
+so this is how we pass data to
+
+components and salt
+
+and to actually get that value we can
+
+say export let user
+
+and why do i create a
+
+new file here called types.ts
+
+export type user
+
+and just so i can use that in all the
+
+places
+
+and i'm going to replace this object
+
+with my user
+
+and by the way um just typing user and
+
+hitting enter was uh
+
+autocompleting this for me you'll notice
+
+we have to do import type since it's a
+
+type
+
+so now let's just display the user
+
+was i using a pre-tag yeah i was using
+
+pre-tag there before why don't we do
+
+that
+
+just or not pre-tag but just the name of
+
+the user maybe at the top
+
+i'll just say hello to the current user
+
+capital h why not
+
+all right so we're only going to show
+
+that if there is a user and
+
+maybe we also have a log out button at
+
+the bottom
+
+we'll fill in the logic for this in a
+
+second
+
+also a button here called login with
+
+github
+
+so when this is clicked we're actually
+
+going to post
+
+a event and actually do we need to post
+
+event i was going to say we post an
+
+event but we can actually make this a
+
+link
+
+let's make this a link
+
+instead of a button
+
+actually no i'm wrong so okay this was
+
+the logic that was going through my
+
+brain i was like let's make it a button
+
+then we'll post a message to the
+
+extension and tell it to authenticate
+
+but then i was like
+
+do i really need to do that i could just
+
+create a link and take us to the website
+
+but we actually really do need to do the
+
+button because i need to call my
+
+authenticate function
+
+so it does this entire thing where it
+
+starts up the server
+
+so actually it's going to become button
+
+again welcome back
+
+all right so we're going to say this
+
+and authenticate
+
+and all we're going to do is listen for
+
+that on our sidebar provider over here
+
+and called the authenticate function
+
+that we already wrote so nothing else we
+
+need to change there
+
+it auto imported for me awesome
+
+all right so it's now going to do
+
+loading our user
+
+or this let's just verify that this is
+
+working so far
+
+and just do a full reload
+
+and then to verify that our log out or
+
+not to verify we actually need to code
+
+log
+
+out next so it should show me a current
+
+user
+
+i feel like it crashes it shouldn't be
+
+this slow
+
+uh failed to connect locos 2000 slash
+
+really did i stop my api
+
+i did all right let me restart it
+
+okay now we're good so it says hello
+
+there and i can type to do's
+
+wait it only let me do one to do do i
+
+crash again
+
+can i have duplicate keys oh i typed the
+
+same word twice trying to do random
+
+letters
+
+alright yeah we're good okay so for
+
+logout
+
+i'm going to set the axis token equal to
+
+an empty string
+
+i'm going to set null or user equal to
+
+null
+
+and i'm also
+
+going to post a message for logout
+
+because on our sidebar provider here
+
+we want to say tokenmanager.settoken
+
+and set to an empty string because
+
+they're not going to be
+
+we want to get rid of that if they've
+
+logged out
+
+all right full reload
+
+oh and the other thing if i go to my
+
+i need to call git token
+
+after authenticate is complete
+
+so what i'm going to do is i'm going to
+
+click to our authenticate and add a
+
+callback function and actually let me
+
+explain this for a second before
+
+i do that basically after we're done
+
+authenticating i want to call
+
+git token to send the new token that we
+
+get from authenticating
+
+to svelt so to be able to do that i want
+
+something like this
+
+oops
+
+and do this and send a token back
+
+but to do that we need to change our
+
+authenticate to actually take a function
+
+so this is basically the callback
+
+whenever we're done
+
+so this means we got a token so we'll
+
+call the function here
+
+all right and you know we could actually
+
+do that before we close the server
+
+because
+
+closing the server is not that really
+
+important this is really the main thing
+
+we do it after the token set
+
+all right so let's test it out now
+
+so we're going to log out then it should
+
+show us a login with github button
+
+all right and now if i press this this
+
+should take us
+
+to the browser log us in with github
+
+it said auth was successful i come back
+
+i now see my hello ben
+
+so awesome so we can successfully log
+
+out log in
+
+and let me just alt r it's still logged
+
+in
+
+as been so perfect so there you go
+
+that's the
+
+process for keeping i guess off state
+
+for the user
+
+now that we have that all set up i want
+
+to add a to-do
+
+entity or to-do table in our database to
+
+store to-do's on the user
+
+and now we can use that jrot token and
+
+send that in requests and we know who's
+
+making requests and so we can know who's
+
+creating
+
+to do's and we can fetch to-do's for
+
+certain users
+
+so in the entities folder for our api
+
+i'm going to create a new file here and
+
+i'm going to call it to do.ts
+
+and then inside of here i'm going to
+
+copy our class
+
+the user class and just paste it in here
+
+and i'm going to call this to do i'm
+
+going to keep this
+
+id and we're going to have some text
+
+which is not null it needs to be a thing
+
+and then also
+
+value called completed and it's going to
+
+be a boolean
+
+and this defaults to false
+
+now i also want to know who has created
+
+a to do
+
+so we are going to set up a relationship
+
+this is going to be
+
+a mini to one relationship
+
+with the user table and this is just
+
+going to be basically the creator of the
+
+to do or you could call it owner
+
+and so this is going to be a user and
+
+the type
+
+is going to be a promise that returns
+
+the user
+
+and then just be capital p all right so
+
+yeah
+
+if you've never used typescript before
+
+again these are just all the types
+
+for each field so number string string
+
+and then
+
+generic is when you use this bracket
+
+like this
+
+i'm saying that this is going to be a
+
+promise and that promise then returns a
+
+user
+
+and so we could also put other things in
+
+here like a number
+
+and whatnot so that's a special type
+
+that's called generic
+
+all right so we're going to pass in our
+
+user here
+
+and so for main to one what we do is i
+
+believe we're going to be given
+
+a type function or target yep
+
+so this is going to give us a user and
+
+actually no i think we pass in just a
+
+user like this
+
+and then we're given a user and then
+
+we're going to say to do's
+
+so we need to set up a field on our user
+
+just so typeworm knows both sides of the
+
+relationship
+
+so here i'm specifying the entity that
+
+this is related to in this case a user
+
+and then here i have to say the field so
+
+the field in this case is called to do's
+
+we haven't set it up yet that's why it's
+
+barking at us but we're going to add
+
+that in a second
+
+and then this is just a function for
+
+both of these is how the
+
+syntax that typeform wants so then over
+
+here
+
+again notice how this is many to one
+
+this side of the relationship is going
+
+to be one too many
+
+one too many right
+
+and so this is with to do
+
+and to do dot creator
+
+and so i'm going to call this to do's
+
+and this is going to return a promise of
+
+to do
+
+and this is actually going to give us an
+
+array right because i can have more than
+
+one to-do as a user
+
+and so the name here lines up with the
+
+name over here
+
+and then i'm going to create a column
+
+for the id
+
+so i like to just say join column and
+
+then give it a name
+
+creator id i like to be explicit about
+
+this
+
+and i can say column creator id
+
+uh you can think of this kind of like a
+
+fake field that typeworm uses
+
+this is the actual field that's going to
+
+be stored in the database
+
+and so i like to just explicitly add
+
+this on my
+
+class you don't have to add this but i'm
+
+going to use it i'm going to fetch it so
+
+i like to have it there
+
+all right so now that we have this we
+
+can in our index for the api
+
+start using it so i'm going to create a
+
+new route here let's actually put it
+
+below our off method all right so i'm
+
+going to say
+
+uh to do and we are going to post to it
+
+to be able to create
+
+so we're going to say rack res
+
+and here i want to say to do dot create
+
+and here i want to pass in basically the
+
+values to create to do
+
+in this case i'm just going to say
+
+rec.body so
+
+to take the data from a post request i
+
+can get the body of a request
+
+and that's what i'm going to use i'm
+
+just going to pass it directly into
+
+create
+
+now you may want to do some validation
+
+if you were in production so you may
+
+want to say like direct.body
+
+dot text dot length is not greater than
+
+a thousand or whatever you want to do to
+
+check but i'm just gonna
+
+keep it simple and send it like that
+
+and then i'm gonna send it back by
+
+saying res.send the to do
+
+and i need to make this async
+
+and did it import it yeah it imported it
+
+why is it not letting me save
+
+um this is possibly it's not exist on
+
+the type
+
+array of to do what
+
+why does it think it's an array of
+
+to-do's
+
+oh i think create
+
+i think so that's going to return an
+
+array of it why
+
+i think i think it's just overloading
+
+the wrong thing so what i'm going to do
+
+is i'm going to say as
+
+a single to item and the type is going
+
+to line up
+
+so if i command click on create
+
+i can see that there's multiple
+
+different types of create
+
+so i just basically went to the
+
+definition you can also right click go
+
+to definition
+
+and i can see that there's different
+
+ways i can call create or they have
+
+different
+
+methods that can be overridden and one
+
+of them returns an array
+
+one of them just returns a single value
+
+this is what we were using but
+
+typescript was
+
+just by default inferring that we were
+
+using this one
+
+so i just cast this to it to do so it
+
+knew we were using the right one and now
+
+it's all happy
+
+and also by the way to be able to get
+
+this body express is going to have to
+
+parse it so if we come up here
+
+i'm just going to say app.use express
+
+dot body parser
+
+or is it json now yeah there we go json
+
+and underneath the hood this is going to
+
+use body parser
+
+and this just parses it to a json object
+
+all right and i don't have to pass it
+
+here but one other thing that we need to
+
+add
+
+is this body is really just going to
+
+have
+
+text that's really actually the only
+
+thing it's going to have so
+
+why don't we actually change this a
+
+little bit and do like this
+
+text is going to be rec.body.txt
+
+we don't need to pass in completed
+
+because we set a default value
+
+and we want to keep it to false but the
+
+creator id is something we need to pass
+
+in
+
+and the creator id is actually something
+
+we are going to be getting
+
+from the token and so we're going to be
+
+doing this in a couple different places
+
+so what i like to do is just create like
+
+a middleware
+
+so i'm going to create a new file called
+
+is auth.ts
+
+because this middleware is going to
+
+check if the user is authenticated as
+
+well
+
+because if you if you want to create it
+
+to do i'm going to force you to log in
+
+basically is how i want to set this up
+
+all right so this is going to take a
+
+request and a response
+
+and also next
+
+um so this is the syntax for creating a
+
+middleware for
+
+express if you just hover over this we
+
+can also grab the type
+
+so what post and this is going to take a
+
+request handler
+
+and we'll copy this all right so what i
+
+did is i just hover again over post
+
+and then i'm just looking at the type
+
+here right it says the first parameter
+
+here and i can see it's the first
+
+parameter because it has a
+
+open print there it says path and then i
+
+can also see it has an array of handlers
+
+so i just need a single handler so i
+
+just copied here
+
+so that's kind of how i figured out that
+
+type there
+
+and i'm going to set the type here and
+
+i'm just going to command period
+
+and add all missing imports for this
+
+i think these two types are just empty
+
+arrays
+
+or sorry empty objects
+
+you could probably also pass any but
+
+we're just personally not looking at
+
+the body so this is how you specify the
+
+body and the
+
+query parameters i believe but we don't
+
+have any so it doesn't matter
+
+or at least we don't care about it for
+
+this middleware
+
+and we're basically going to do the same
+
+logic as we have
+
+in our slash me
+
+so what i'm going to do is i'm just
+
+going to copy this
+
+all the way here
+
+um the only difference is instead of
+
+just returning a null user we're
+
+actually just going to throw
+
+new error and we're going to say not
+
+authenticated
+
+and we'll do that here as well
+
+and we don't need to return
+
+and don't need it here
+
+and we don't need this part actually i
+
+guess if we make it all the way to here
+
+we can throw an error down here um
+
+because how we're going to make this
+
+work
+
+we need an important awt
+
+is instead of just setting it on this
+
+user id here i'm just going to stick it
+
+on the
+
+request object
+
+all right and then we don't actually
+
+care about res so i'm gonna just do an
+
+underscore and i'm gonna call next here
+
+and we'll return and actually i don't
+
+need to have a catch
+
+throw error yeah you see how this is
+
+grayed out so i'm just gonna get rid of
+
+this
+
+we'll have an empty catch body like this
+
+all right this looks good so if i made
+
+it all the way down here we're going to
+
+save the user id which we get from the
+
+token which we get from the headers and
+
+store it on a request id
+
+now this is not happy with us because
+
+this type doesn't really line up
+
+i'm just going to cast this to any for
+
+now actually do i want to
+
+um maybe i do it like no i'm going to
+
+cast it to any for now
+
+but what i'm going to do is i'm going to
+
+create a new object
+
+or new type called rec with
+
+user id and all this is going to be
+
+is this new rec object so by default if
+
+i hover over this
+
+it's going to be a request and actually
+
+let's take the whole thing
+
+take these
+
+and we're going to say and user id
+
+string so i'm creating a new type by
+
+concatenating this type with this type
+
+request is not generic do i need to say
+
+express
+
+there we go we just need to import
+
+requests from express
+
+so if you've never seen this before how
+
+this works
+
+is if i do like user id string
+
+and uh user id 2 or we'll just say user
+
+2
+
+there's also a string that's equivalent
+
+to me just having a single object
+
+that looks like this right
+
+so it takes these two objects and
+
+matches them together
+
+so this doesn't necessarily look like an
+
+object but it is
+
+it just has some generics passed in
+
+so now in my index over here
+
+i'm going to say is auth and i'm going
+
+to say
+
+rec with user id as my type there
+
+and here i'm going to say rec.user id
+
+and let me first see why this is mad and
+
+then we'll fix why the other one's mad
+
+um type is missing following properties
+
+from type to do oh it doesn't like that
+
+i'm casting it to to do anymore i don't
+
+think we really need the cast
+
+do we just not string is not
+
+type oh the user id here needs to be
+
+a number i forgot that our user ids are
+
+numbers not strings
+
+all right so that's happy i'm guessing
+
+this is not going to be happy
+
+because this request with user id
+
+changes
+
+it's going to tell us the types don't
+
+line up
+
+yes so i actually don't know the best
+
+way to fix that
+
+i used to just do this but i wanted to
+
+be nicer
+
+and have like a nice object that knew
+
+the type
+
+all right there's probably a way to fix
+
+this but to be honest with you i'm just
+
+going to cast any for now
+
+because i don't want to deal with it so
+
+i guess we don't really need our type
+
+over there but it's whatever
+
+but yeah so notice we are getting the
+
+user id from the request
+
+object which the is auth actually is
+
+going to stick on there for us
+
+but if i try calling this without being
+
+logged in it's going to stop us so
+
+that's perfect
+
+all right so let's test out our to-do
+
+and let's go to our extension
+
+and so now in our form when we submit
+
+instead of doing it to do like this we
+
+want to send a post request
+
+we still want to blank the the input
+
+though so we'll do that
+
+put down here all right so we're gonna
+
+say base url
+
+and here we're going to say
+
+the path is just to do the method is
+
+going to be a post request
+
+the body is going to be json and we need
+
+to stringify it
+
+and the text is just going to be text
+
+and oh you know what
+
+we actually need to put this afterwards
+
+that way we don't clear the text before
+
+we do this
+
+i'll make this asynchronous
+
+i need to pass in my auth header like i
+
+was in my sidebar over here
+
+so maybe i need to pass this access
+
+token as a prop
+
+um by the way this syntax if the props
+
+name lines up you can do it like this
+
+and this is just shorthand for
+
+this so you this is equivalent you see
+
+how the names are the same so if i save
+
+it prettier is going to automatically
+
+make it look like this
+
+alright so back at our to-do's
+
+all right so we're sending a post
+
+request to here we have our
+
+authorization oh
+
+headers should be here not inside the
+
+body
+
+and then here we're going to say
+
+to do is equal to await
+
+response.json
+
+and then we are going to update our
+
+to-do's
+
+passing in our new to-do
+
+okay so let's give this a shot
+
+i'm going to just alt r my extension and
+
+i'm going to say first
+
+hit enter and it probably crashed so
+
+let's open up the webview and see what
+
+we did wrong
+
+i'm going to look at the network request
+
+enter
+
+um pending oh does it never respond
+
+our server's crashing no value in column
+
+text the relation to
+
+violates not null
+
+all right let's see what we did wrong so
+
+i'm passing in rec.bio.txt
+
+let's do a console log of what the
+
+rec.body is
+
+all right let's hit enter
+
+hit enter again because i didn't let it
+
+reset
+
+wait what
+
+oh you know what no i just messed this
+
+up i actually have another server
+
+started up on 3002 i think
+
+so let's do so this is the command you
+
+can do
+
+at least that id to see what's running
+
+on port 3002 i forgot i started up
+
+another i started
+
+create react app um so it's gonna be
+
+this one
+
+so i can say kill that id
+
+now we only have one running perfect
+
+wait i just control seed
+
+this shouldn't actually be running
+
+either let's kill it why not
+
+all right so i killed everything that
+
+was running on that port
+
+and now i'm gonna restart it so yours
+
+actually might have just worked
+
+all right let's run it again there we go
+
+now it's actually posting to the right
+
+place
+
+all right so let's see what the request
+
+body is the request body is an empty
+
+string
+
+oh i'll tell you why i know why
+
+it's because i didn't specify the
+
+content type
+
+content type um how do i do this
+
+is it content type like that
+
+application slash json
+
+i'm like 96 percent sure this is the
+
+header you're supposed to pass whenever
+
+you do json data
+
+but i might need to look it up if this
+
+does not work but that's definitely what
+
+our problem is
+
+all right depending oh
+
+need alt r to refresh it
+
+oh nice first shut up
+
+uh so notice how we are actually getting
+
+an object that says text
+
+first now yeah so you just need to tell
+
+the api that you are sending json data
+
+because if you don't
+
+this does not work our express json
+
+parser here does not actually parse out
+
+unless you say you're passing in json
+
+all right cool so it's actually sending
+
+the data to the api
+
+is auth is making sure that we're logged
+
+in and it gave us the right user
+
+and it's actually creating a to-do now
+
+now if i refresh my to-do's go away
+
+so next we want to actually be able to
+
+fetch those
+
+to-do's from the api as well so jumping
+
+back to our index file on the api
+
+we're going to do a git route here i'm
+
+going to say
+
+app dot get and i'm going to say slash
+
+to do and
+
+it's totally fine to have these routes
+
+be on the same thing
+
+but they're doing different methods like
+
+this is git and this is post so that's
+
+okay
+
+and i did backticks here for really no
+
+reason so let's go back to single ticks
+
+and then let prettier make it double
+
+ticks and so
+
+we're going to say rack res
+
+and this is another place where i need
+
+to know who the user is and i
+
+want them to be logged in so i'm going
+
+to be using my is off middleware here
+
+and i'm going to say rec dot user id
+
+again
+
+to get the user id and i'm just going to
+
+cast this to any
+
+and i'm going to say to do's is equal to
+
+await
+
+to do dot find i'm going to say where
+
+but let's make this async
+
+and this needs to be to do async because
+
+we're doing a wait
+
+and this needs to be creator id
+
+there we go i was just waiting for
+
+prettier to format things to make sure
+
+my syntax was right
+
+all right so yeah so based on the token
+
+we are going to get all of the
+
+to-do's that you've ever created i'm not
+
+going to worry about pagination for this
+
+and i'm going to say
+
+res.send and send those to dues down so
+
+now we can call this endpoint
+
+from our to-dos.felt so
+
+let's stick this in our on mount and
+
+we're going to just populate this to
+
+do's
+
+array when we get the data so i'm going
+
+to copy this response because it's
+
+kind of similar-ish
+
+alright so here we're going to hit
+
+to-do's the method here is going to be
+
+git if we don't specify a method it's
+
+going to get by default
+
+and again make sure to pass in our
+
+header we're not doing a post request
+
+with json data with a body so we don't
+
+need to pass the content type
+
+and this should give us to-do's and i'm
+
+going to call this payload
+
+and i'm going to set to do's equal to
+
+payload.to do's
+
+all right so i'll come back over here
+
+reload it
+
+and you'll see my titty is there so i'm
+
+going to say
+
+2 and i can reload it and it is there
+
+now you notice the order is kind of
+
+interesting
+
+i don't know how i want to do that don't
+
+inverse the order because what i can do
+
+is i can say if i want to keep the same
+
+order
+
+in my oh not this one and the find here
+
+i can say order by
+
+and we're gonna say id and we'll make it
+
+descending
+
+and i think that should have two on top
+
+perfect so now if i do three and i
+
+reload
+
+it's in the same order i just want to
+
+make sure that they lined up
+
+now in our to-do's and felt the only
+
+other thing that i was going to do
+
+here there's one other thing i wanted oh
+
+yeah the id
+
+so right now if i do like for example
+
+three
+
+and i already you know it didn't show up
+
+right it's because we already have a
+
+three
+
+and if i open up the web view
+
+it's gonna complain about duplicate keys
+
+and that's because i'm using the text of
+
+the to-do for the keys but i don't
+
+actually need to do that anymore
+
+i can use to do to id and
+
+i need to add an id to my to-do of
+
+course
+
+id is a string hey what am i doing this
+
+number
+
+there we go um new to do
+
+i'm not going to worry about the i mean
+
+i guess if i really want to worry about
+
+this
+
+worry about the the new to do that
+
+happens here in a second
+
+we'll we'll fix that i'm gonna just
+
+comment it out for now
+
+all right so if i reload this it now
+
+shows up and i can do three again
+
+that's because it has a unique id now
+
+even though the text is the same so
+
+that's all
+
+all good uh and you notice i can cross
+
+things out but again
+
+i'm not storing that a database right
+
+now or at least persisting it to
+
+database or it's letting the database
+
+know so if i reload it it goes away
+
+but okay so this add to do button i kind
+
+of broke right doesn't actually send it
+
+to do in
+
+so how can i do that well
+
+you can copy the logic here to create a
+
+to do
+
+and stick it in here
+
+all right so text is actually going to
+
+be
+
+message dot value
+
+other than that everything else in this
+
+block is the same i could even
+
+refactor this into a function if i
+
+really wanted to
+
+so why don't we try that add to do
+
+and it's going to be an async function
+
+um i was going to put text here but i
+
+didn't want it to conflict
+
+so text is what we're going to pass in
+
+but let's call it t
+
+and this is going to be a string
+
+copy this bit paste it here
+
+and we're going to pass t here so now i
+
+can call add to do here
+
+passing in message.value
+
+and i can also call add to do down here
+
+passion text
+
+now i could await this if i wanted to
+
+but i actually want to clear the input
+
+right away i think
+
+so it's doing alt r
+
+i'm going to copy this and push add to
+
+do and now
+
+it sends it over here awesome again just
+
+going to make sure it persisted
+
+it does i reloaded it we should also
+
+test out our authentication middleware
+
+and just make sure if we don't send a
+
+token with this request
+
+that it doesn't actually send us to do's
+
+back so what i'm going to do is just
+
+comment out the authorization
+
+not on the add to do although that we
+
+could test it there too but i want to do
+
+it on this one
+
+when we fetch i'm just going to save
+
+this come over here
+
+and i'm going to reload the window and
+
+sure enough the to-do's do not show up
+
+so perfect
+
+so then like the api knowing who we are
+
+is all based on the token that we are
+
+sending
+
+now i'd also like to persist the to do's
+
+like when i press it and
+
+cross it out so right now if i click
+
+these and i refresh it's gone
+
+so we're going to add in our api a new
+
+method here
+
+and i'm going to use put the put method
+
+since we're doing a update and again
+
+we're going to keep the is auth portion
+
+here
+
+and i'm going to in my request body
+
+instead of the text we're going to say
+
+completed and just like flip it from
+
+true to false
+
+and we also need to do an update now
+
+what i'm going to do is just keep this
+
+simple
+
+and fetch the to do so i'm going to say
+
+wait to do
+
+dot find one
+
+so we need to pass the um id of this do
+
+that we actually want to update in the
+
+body
+
+and then i'm going to say to do dot
+
+completed is equal to to do dot
+
+completed
+
+and just the inverse and then i'm going
+
+to say to do dot save
+
+now it's putting these question marks
+
+everywhere because cadoo or to do can
+
+sometimes be a null so
+
+if we do not get it to do for some
+
+reason
+
+i'm going to send back the updated to do
+
+as uh null
+
+and i'm going to get rid of the question
+
+marks now we don't need those since we
+
+have this if check here
+
+now what is it not happy with
+
+type boolean is not assignable to type
+
+string
+
+all right so let me click on my to do
+
+here this should be a boolean
+
+all right now go back
+
+now this is typeform syntax i think i
+
+use it above as well
+
+we can just change the value on the
+
+field after we fetch it and then we can
+
+save it
+
+now you could probably write this in one
+
+go with
+
+to do.update and i believe there's a
+
+return syntax
+
+but i don't want to get too involved in
+
+that because we're going to do like a
+
+query builder for that i just want to
+
+show some simple stuff for this
+
+and uh we're just going to return the
+
+new to do back so this is a very simple
+
+way you can do your updates
+
+and now if i go to my to-do.felt we are
+
+just going to
+
+do instead of to-do.completed
+
+call our api well we're going to do this
+
+as well but we're also going to call our
+
+api
+
+so we're going to say api base url
+
+and here we're going to say method
+
+put
+
+body json.stringify and put
+
+basically works very similar to post
+
+and this is just like a rest convention
+
+you could do if you want to you could
+
+just make this a post request too
+
+so we need to pass the id of the to do
+
+and was there anything else i passed on
+
+in the body nope that was it
+
+headers
+
+and i'm going to copy the headers that
+
+we're using for add to do because
+
+they're the same
+
+hey this looks pretty good i'm going to
+
+make this asynchronous
+
+actually it's going to be response
+
+and we can array response.json
+
+and i'm just going to console.log it we
+
+don't really do anything with the
+
+response we could
+
+update the to do completed but we're
+
+already doing it here
+
+so just gonna refresh the webview i'm
+
+gonna click this
+
+refresh the webview and it's still there
+
+nice and let's toggle it back off
+
+and we can add another
+
+click it refresh
+
+and that's looking pretty good um so
+
+there we have it we can now
+
+do update and i think you guys get the
+
+gist of how we add
+
+more and more functionality to the app
+
+we can add more api endpoints
+
+we can add our authentication middleware
+
+in there for the ones that need to be
+
+authenticated
+
+and then we can make fetch calls um from
+
+our svelt code
+
+and send the header to auth and uh
+
+that's how we also get the user
+
+that's one other thing maybe we should
+
+add that as well
+
+is right now i'm finding it to do but
+
+right now anyone can edit a to do
+
+right so if to do dot
+
+created at creator id is not equal to
+
+request.userid so this is just some
+
+authorization logic
+
+to make sure that the person who owns
+
+the to-do is the only one who's editing
+
+it
+
+so i'll just say you're not authorized
+
+so if the id
+
+on the to-do does not match the current
+
+user based on the token
+
+we're going to say not authorized and
+
+throw that now normally i would test
+
+this
+
+but i'm feeling kind of lazy and the
+
+focus of this is not
+
+backend it's vs code extensions so i'm
+
+going to leave this as an exercise for
+
+you
+
+if you want to like go log in with
+
+another account
+
+create a token and then use that token
+
+and try to update it to do
+
+to test this out go ahead but i'm
+
+feeling pretty confident
+
+about my logic right there so i'm going
+
+to leave it as is
+
+now i want to go over one last concept
+
+for vs code extensions
+
+so in our to-do's dot svelt right now we
+
+kind of just have
+
+one page and that's totally fine but
+
+let's say we want multiple pages
+
+one way i could do that is actually
+
+let's go to our sidebar
+
+because to-do's might be a page right so
+
+let's say we have a page
+
+um variable which we just store the
+
+current page in so for example
+
+this can either be what the heck
+
+this can either be to-do's
+
+or it can be uh what do i want my other
+
+page to be
+
+i'll just call it contact
+
+and by the way the reason why i wrote my
+
+typescript type like this is because i
+
+can now get autocompletion
+
+so if i hit control space while inside
+
+this single quotes it'll
+
+auto complete these two options so by
+
+default i'm going to have it display to
+
+do's
+
+and then down here in my code i'm going
+
+to have an
+
+if statement if
+
+there's a hashtag if page is equal to
+
+and i'm going to wrap the to do
+
+if it's equal to dues i'll display to
+
+do's otherwise
+
+we'll do else contact me here
+
+right whatever so just pretend this is a
+
+really cool page
+
+and then we'll have a button down here
+
+that says on click
+
+and this is just so we can navigate i'm
+
+going to say go back
+
+and all it's going to do is it's going
+
+to set the page to to-do's
+
+so we can go back after we go there now
+
+if i come to my extension
+
+just do a web view reload there oh wait
+
+i need to add a button to go there as
+
+well
+
+so on this dues page
+
+go to contact and we'll set this to
+
+contact
+
+alright save it all right there we go so
+
+i can press this to go to contact
+
+i can press go back to go back right all
+
+right so we have like
+
+a little bit of a page set up for us to
+
+switch pages
+
+now here's the thing i'm on the contact
+
+page right let's say someone closes the
+
+sidebar and then reopens it
+
+you notice the sidebar changed right
+
+it's now on the to-do's
+
+so by default it's going to recreate
+
+your webview every single time
+
+now you may want this behavior if so you
+
+can just keep it as
+
+is but for my application when you went
+
+to contact and you closed and reopened i
+
+wanted it to open and have the contact
+
+page
+
+shown so the way that you can actually
+
+get it to work is by keeping track of
+
+the state and the page that you're last
+
+on
+
+so if we use the tsvs code there's
+
+actually
+
+two methods we can use on this and i'm
+
+actually just going to
+
+command click again to go definition and
+
+add the two functions
+
+so there's a function called state which
+
+returns it's a function we can call and
+
+it can return whatever we want it to
+
+return
+
+and there's set state which takes the
+
+state which can be anything and returns
+
+void
+
+so the idea is in our code we're going
+
+to call set state
+
+and then whenever we reload the panel if
+
+we call git state whatever we last
+
+called set state with
+
+will be inside there so one way we can
+
+do this
+
+is and felt if you do a dollar sign
+
+like this this code block here will be
+
+called every single time
+
+uh whatever variables you use inside of
+
+your change so what that means is i can
+
+say
+
+tsvscode.setstate
+
+and i can save the page so every time
+
+this
+
+page object or not object but variable
+
+changes
+
+salt is going to automatically rerun
+
+this code and it's going to set the
+
+state
+
+so it's going to persist this so what i
+
+can actually do here
+
+is i can say tsvs code
+
+copy this
+
+dot getstate now this may be
+
+undefined if we don't have a state so
+
+i'm going to do a question mark
+
+and say dot page and if we don't have a
+
+page then i'm going to set it to to do's
+
+so when this first loads we're going to
+
+check if we have a state for it
+
+if not we're going to take to do's and
+
+then after that whenever we navigate
+
+pages it's going to save this and again
+
+this will work for any number of pages
+
+all right so let's test this out i'm
+
+going to reload it i'm going to go to
+
+contact
+
+i'm going to close my panel and then i'm
+
+going to reopen it and you'll notice
+
+contact stays open right
+
+and so that's the exact behavior that we
+
+want and i can press go back
+
+close reopen it and you notice to-do's
+
+is still there
+
+so that is how you can keep track of the
+
+page that you're on or really any other
+
+client state it doesn't just have to be
+
+you know the page
+
+you might have someone filling out the
+
+form right so i might have
+
+some text in here but if i close and
+
+reopen it's gone
+
+so for anything that you want to persist
+
+whenever this is closed and reopen
+
+you may want to store in this state and
+
+then reload it like this and basically
+
+you're going to do this exact same
+
+behavior you can stick any variables you
+
+want in a block like this and save it
+
+i also wanted to jump back to the api
+
+for a second because someone sent me a
+
+snippet on how to get the types to work
+
+with express so i don't know if you
+
+remember earlier in the tut we were
+
+trying to get it to work with this wreck
+
+with user id but this is like the wrong
+
+approach
+
+so i'm just going to kill it goodbye and
+
+instead we're going to like extend this
+
+request object
+
+by creating a type i'm going to say new
+
+and i'm going to say extend dash
+
+express.d.t.s
+
+and we're going to say declare namespace
+
+express
+
+export interface request
+
+and basically the names are going to
+
+line up express
+
+is a name space inside of express and if
+
+i command click
+
+and look around i should be able to find
+
+it there it is
+
+and request is also inside of there and
+
+you can actually see us importing it so
+
+this is us adding a property to this
+
+interface
+
+so i can just say user id user id
+
+which is a string and now it's just
+
+going to be there and all of the objects
+
+and also we don't need this and our is
+
+auth anymore
+
+all right so now what does this mean for
+
+us well enter is off now you know how i
+
+had to do like rec dot as any because
+
+this is not on it i don't need that
+
+anymore
+
+it's now just happy and you know in my
+
+index file over here
+
+where i had any did i not set it to any
+
+i thought i did
+
+yeah i did oh i put a space and you put
+
+a space
+
+by the way that control f or a command f
+
+is how you bring up this and you can
+
+actually search if you need to in vs
+
+code
+
+all right so uh this doesn't need to be
+
+there anymore
+
+well okay this one does because this is
+
+just a random access token
+
+sorry this is going to be the request
+
+object yes this
+
+well this one we have to set the any two
+
+okay this is the
+
+one i'm specifically talking about we
+
+use request and we
+
+have the user id this one there
+
+all right so user id is just going to be
+
+on this object now at least as far as
+
+typescript types go so we do not need
+
+these
+
+um oh
+
+so if you if we look at this oops
+
+i think it's going to tell us that yep
+
+so
+
+by the way usually when i get i'm sorry
+
+i'm scrolling way too much
+
+so usually when i get a typescript error
+
+you'll notice what i've been doing is
+
+i'll actually scroll down to the bottom
+
+so personally i find that's actually
+
+where the useful information is
+
+dude it's really hard to just keep this
+
+snippet up i'm scrolling way past it
+
+every single time
+
+so like this junk up here you can kind
+
+of read through it but usually
+
+just skip to the bottom this is where
+
+the juicy bit is usually but sometimes
+
+this can be helpful but
+
+usually i start the bomb and read up is
+
+what helps me
+
+so it says type string is not assignable
+
+to type number or undefined
+
+and so i can see what property it's
+
+talking about because it says right here
+
+creator id
+
+is the one and that's interesting
+
+because we just you know set this right
+
+so what's going on there
+
+well our user id here i said it was a
+
+string but it's actually a number so
+
+that that's what i messed up
+
+um so that's what's going on there
+
+that's kind of how i look at typescript
+
+errors and we can get rid of this any as
+
+well
+
+are there any others that i used nope
+
+this one's still fine
+
+but there you go so that is how we can
+
+handle that case
+
+and with that we are done with this
+
+tutorial for everyone that made it to
+
+the end
+
+thank you for watching there is one
+
+thing we didn't really cover and that is
+
+just deploying
+
+the vs co extension i'm going to add a
+
+link in my description if you want to
+
+check out how to do that
+
+vs code has good documentation on this
+
+and you basically just have to set up a
+
+couple accounts
+
+to actually deploy it to their store and
+
+also i'll put a link of how to deploy
+
+the api
+
+if you're interested in deploying that
+
+if you like this video make sure to give
+
+it a thumbs up i'd really appreciate it
+
+and let me know in the comments below if
+
+you enjoyed it
+
+if you did enjoy it let me know any
+
+feedback you have i really appreciate
+
+that
+
+and i hope you guys have an amazing day
+
+you
+
